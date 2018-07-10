@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Nav from '../../components/Nav/Nav';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
+import FormationDisplay from '../../components/FormationDisplay/FormationDisplay';
 
 //This is for the logout button
 // import { triggerLogout } from '../../redux/actions/loginActions';
@@ -24,7 +25,7 @@ class FormationPage extends Component {
         }
     }
 
-    
+
 
     render(){
         let content = null;
@@ -34,6 +35,7 @@ class FormationPage extends Component {
                 <div>
                   <p>
                     This is the Formation Page
+                    <FormationDisplay />
                   </p>
                 </div>
             );
@@ -43,6 +45,7 @@ class FormationPage extends Component {
             <div>
                 <Nav />
                 { content }
+
             </div>
         )
     }
