@@ -24,6 +24,7 @@ class FormationPage extends Component {
         }
     }
 
+    
 
     render(){
         let content = null;
