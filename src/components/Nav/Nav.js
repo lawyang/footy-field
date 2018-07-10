@@ -20,6 +20,11 @@ const Nav = () => (
             Formations
           </Link>
         </li>
+        <li>
+          <Link to="resource">
+            Resources
+          </Link>
+        </li>
       </ul>
     </div>
   </div>

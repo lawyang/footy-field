@@ -16,6 +16,7 @@ import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
 import InfoPage from './components/InfoPage/InfoPage';
 import FormationPage from './pages/Formation/Formation';
+import ResourcePage from './pages/Resource/Resource';
 
 import './styles/main.css';
 
@@ -44,6 +45,10 @@ const App = () => (
         <Route
           path="/formation"
           component={FormationPage}
+        />
+        <Route 
+          path="/resource"
+          component={ResourcePage}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />
