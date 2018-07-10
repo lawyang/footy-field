@@ -33,10 +33,10 @@ class FormationPage extends Component {
         if (this.props.user.userName){
             content = (
                 <div>
-                  <p>
+                <p>
                     This is the Formation Page
+                </p>
                     <FormationDisplay />
-                  </p>
                 </div>
             );
         }
