@@ -1,13 +1,27 @@
-body {
+.grid-container {
     display: grid;
-    min-height: 100%;
-    background-color: rgb(115, 141, 141)
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    background-color: rgb(255, 255, 255)
 }
 
 li {
     list-style: none;
 }
 
-.formationName{
-    background-color: azure;
+.grid-item{
+    /* background-color: rgb(152, 205, 248);
+    width: 300px; */
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
+    /* padding: 20px; */
+    font-size: 20px;
+    text-align: left;
 }
+
+#formationName{
+    color: blue;
+    background-color: beige;
+    width: 250px;
+    font-size: 5px;
+}
+
