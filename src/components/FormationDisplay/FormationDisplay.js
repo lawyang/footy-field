@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
-
+import './formationDisplay.css';
 
 const mapStateToProps = state => ({
 
@@ -39,8 +39,25 @@ class FormationDisplay extends Component {
     render(){
         return(
             <div>
-                {/* <p>{JSON.stringify(this.state.formationArr)}</p> */}
-                {this.state.formationArr.map( detail => <p key={detail.id}>{detail.notes}</p>)}
+                <div>
+                    
+                </div>
+
+                <div>
+                    <ul>
+                        {this.state.formationArr.map((detail) => 
+                            <div key={detail.id}>
+                                <li>Strengths: {detail.strengths}</li>
+                                <li>Weaknesses: {detail.weaknesses}</li>
+                                <li>Notes: {detail.notes}</li>
+                            </div>
+                        )}
+                    </ul>
+                </div>
+                <ul>
+                    <li>test test</li>
+                    <li>test2</li>
+                </ul>
             </div>
         )
     }

@@ -1,0 +1,5 @@
+body {
+    display: grid;
+    min-height: 100%;
+    background-color: rgb(115, 141, 141)
+}

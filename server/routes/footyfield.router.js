@@ -6,7 +6,7 @@ const router = express.Router();
  // GET route for formation
 router.get('/formation', (req, res) => {
     console.log('in get call from the router');
-    const queryText = "SELECT id, formation_name, structure, image_url, strengths, weaknesses, notes FROM formation_detail;";
+    const queryText = "SELECT id, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE formation_name='laws 4-3-3'";
     pool.query(queryText)
         .then((result) => {
             console.log('Successful GET call', result);

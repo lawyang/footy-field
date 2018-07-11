@@ -1,0 +1,10 @@
+.instructions h1 {
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.instructions {
+    background-color: #000000;
+    padding: 5px;
+    color: #ece7e7;
+}
