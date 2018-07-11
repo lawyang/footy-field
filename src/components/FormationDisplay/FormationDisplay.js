@@ -62,11 +62,11 @@ class FormationDisplay extends Component {
     render(){
         return(
             <div className="grid-container">
-                <div className="grid-item"></div>   
-                <div className="grid-item"></div>   
+                <div className="grid-item">1</div>   
+                <div className="grid-item">2</div>   
  
-                <div className="grid-item" id="formationName">
-                    <Paper elevation={1}>
+                <div className="grid-item-3" id="formationName">
+                    <Paper elevation={1} style={{maxHeight: 400, overflow: 'auto'}}>
                     <List component="nav">
                         {this.state.nameArr.map((name) => 
                             <ListItem key={name.id} button>
@@ -77,32 +77,30 @@ class FormationDisplay extends Component {
                     </List>
                     </Paper>
                 </div>
-                <div className="grid-item"></div>
-                <div className="grid-item"></div>
-                <div className="grid-item">
+
+                <div className="grid-item">4</div>
+                <div className="grid-item">5</div>
+                
+                <div className="grid-item-6" id="formationDetail">
                     <Paper elevation={1}>
-                        <Typography variant="headline" component="h3">
+                        <h1 className="detailHead">
                             Formation Details
-                        </Typography>
-                            <ListItem>
-                                {this.state.formationArr.map((detail) => 
-                                    <ListItemText primary={detail.strength} />)}
-                            </ListItem>
-                            <ul>
+                        </h1>
+                            {/* <ul> */}
                                 {this.state.formationArr.map((detail) => 
                                     <ul key={detail.id}>
-                                        <li>Strengths: {detail.strengths}</li>
-                                        <li>Weaknesses: {detail.weaknesses}</li>
-                                        <li>Notes: {detail.notes}</li>
+                                            <li>Strengths: {detail.strengths}</li>
+                                            <li>Weaknesses: {detail.weaknesses}</li>
+                                            <li>Notes: {detail.notes}</li>
                                     </ul>
                                 )}
-                            </ul>
+                            {/* </ul> */}
                     </Paper>
                 </div>
-                <div className="grid-item"></div>   
-                <div className="grid-item"></div>   
-                <div className="grid-item"></div>   
-                <div className="grid-item"></div>  
+
+                <div className="grid-item">7</div>   
+                <div className="grid-item">8</div>   
+                <div className="grid-item">9</div>   
             </div>
         )
     }

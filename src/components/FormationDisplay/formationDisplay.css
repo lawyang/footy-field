@@ -5,14 +5,15 @@
     background-color: rgb(255, 255, 255)
 }
 
-li {
-    list-style: none;
+ul {
+    padding: 0;
+    list-style-type: none;
 }
 
 .grid-item{
-    /* background-color: rgb(152, 205, 248);
-    width: 300px; */
-    /* border: 1px solid rgba(0, 0, 0, 0.8); */
+    /* background-color: rgb(152, 205, 248); */
+    width: 300px;
+    border: 1px solid rgba(0, 0, 0, 0.8);
     /* padding: 20px; */
     font-size: 20px;
     text-align: left;
@@ -21,7 +22,19 @@ li {
 #formationName{
     color: blue;
     background-color: beige;
-    width: 250px;
+    width: 350px;
     font-size: 5px;
 }
 
+#formationDetail{
+    color: blue;
+    width: 350px;
+    font-size: 15px;   
+    text-align: left;
+}
+
+
+
+.detailHead {
+    color: blueviolet;
+}
