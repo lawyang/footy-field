@@ -3,3 +3,11 @@ body {
     min-height: 100%;
     background-color: rgb(115, 141, 141)
 }
+
+li {
+    list-style: none;
+}
+
+.formationName{
+    background-color: azure;
+}

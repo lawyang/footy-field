@@ -3,6 +3,12 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './formationDisplay.css';
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+
+
+
 const mapStateToProps = state => ({
 
 })
@@ -12,16 +18,18 @@ class FormationDisplay extends Component {
         super();
         this.state = {
             formationArr: [],
+            nameArr: []
         }
     }
     // get formation information on load
     componentDidMount(){
-        this.getFormation();
+        this.getFormationDetail();
+        this.getFormationName();
     }
 
-    //GET call to the DB
-    getFormation = () => {
-        axios.get('/api/footy/formation')
+    //GET call for Formation Details
+    getFormationDetail = () => {
+        axios.get('/api/footy/details')
             .then((response) => {
                 console.log('Success GET call for Formation', response.data);
                 this.setState({
@@ -30,7 +38,21 @@ class FormationDisplay extends Component {
                 console.log('this is formationarr',this.state.formationArr);
             })
             .catch((error) => {
-                console.log('Error Handling GET call for Formation', error);
+                console.log('Error Handling GET call for Formation Detail', error);
+            })
+    }
+
+    //Get call for Formation Name
+    getFormationName = () => {
+        axios.get('/api/footy/formation')
+            .then((response) => {
+                this.setState({
+                    nameArr: response.data
+                })
+                console.log(this.state.nameArr);
+            })
+            .catch((error) => {
+                console.log('Error handling GET call for Formation Name', error);
             })
     }
 
@@ -39,8 +61,15 @@ class FormationDisplay extends Component {
     render(){
         return(
             <div>
-                <div>
-                    
+                <div className="formationName">
+                    <List component="nav">
+                        {this.state.nameArr.map((name) => 
+                            <ListItem button>
+                                <ListItemText primary={name.formation_name} />
+                                {/* <ListItemText primary="Trash" /> */}
+                            </ListItem>
+                        )}
+                    </List>
                 </div>
 
                 <div>
@@ -54,10 +83,10 @@ class FormationDisplay extends Component {
                         )}
                     </ul>
                 </div>
-                <ul>
-                    <li>test test</li>
-                    <li>test2</li>
-                </ul>
+
+
+
+
             </div>
         )
     }
