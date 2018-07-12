@@ -3,25 +3,25 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import './formationDisplay.css';
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 
-import Radio from '@material-ui/core/Radio';
-import RadioGroup from '@material-ui/core/RadioGroup';
+import Button from '@material-ui/core/Button';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 const mapStateToProps = state => ({
 
 })
+
 
 class FormationDisplay extends Component {
     constructor(){
         super();
         this.state = {
             formationArr: [],
-            nameArr: []
+            nameArr: [],
+            anchorEl: null,
         }
     }
     // get formation information on load
@@ -59,36 +59,50 @@ class FormationDisplay extends Component {
             })
     }
 
+    handleClick = event => {
+        this.setState({ anchorEl: event.currentTarget });
+      };
+    
+    handleClose = () => {
+        this.setState({ anchorEl: null });
+    };
 
+    handleName = (id) => {
+        console.log('test est', id);
+        axios.get(`/api/footy/details/${id}`)
+        this.setState({ anchorEl: null });
+        
+    }
 
     render(){
+        const { anchorEl } = this.state;
         return(
             <div className="grid-container">
                 <div className="grid-item">1</div>   
                 <div className="grid-item">2</div>   
- 
-                <div className="grid-item-3" id="formationName">
-                    <Paper elevation={1} style={{maxHeight: 400, overflow: 'auto'}}>
-                    <List component="nav">
+                <div>
+                    <Button
+                        aria-owns={anchorEl ? 'simple-menu' : null}
+                        aria-haspopup="true"
+                        onClick={this.handleClick}
+                        color="default"
+                        variant="contained"
+                        >
+                        Choose a Formation
+                    </Button>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        open={Boolean(anchorEl)}
+                        onClose={this.handleClose}
+                        >
                         {this.state.nameArr.map((name) => 
-                            <ListItem key={name.id} button>
-                                <ListItemText primary={name.formation_name} />
-                                {/* <ListItemText primary="Trash" /> */}
-                            </ListItem>
+                            <MenuItem key={name.id} onClick={()=> this.handleName(name.id)}>{name.formation_name}</MenuItem>
                         )}
-                    </List>
-                    </Paper>
+                    </Menu>
                 </div>
-
-                <div className="grid-item">
-                
-                
-                </div>
-                
-
-
+                <div className="grid-item"></div>
                 <div className="grid-item">5</div>
-                
                 <div className="grid-item-6" id="formationDetail">
                     <Paper elevation={1}>
                         <h1 className="detailHead">
@@ -105,7 +119,6 @@ class FormationDisplay extends Component {
                             {/* </ul> */}
                     </Paper>
                 </div>
-
                 <div className="grid-item">7</div>
                 <div className="grid-item">8</div>   
                 <div className="grid-item">9</div>   

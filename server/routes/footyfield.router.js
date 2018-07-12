@@ -4,10 +4,10 @@ const router = express.Router();
 
 
  // GET route for formation details
-router.get('/details', (req, res) => {
+router.get('/details/:id', (req, res) => {
     console.log('in get call from the router');
     //Need to replace the WHERE to what is selected
-    const queryText = "SELECT id, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE formation_name='laws 4-3-3'";
+    const queryText = "SELECT id, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE id=2";
     pool.query(queryText)
         .then((result) => {
             console.log('Successful GET call', result);
@@ -21,6 +21,7 @@ router.get('/details', (req, res) => {
 
 // GET route for formation name
 router.get('/formation', (req, res) => {
+
     const queryText = "SELECT id, formation_name, structure, image_url, strengths, weaknesses, notes FROM formation_detail";
     pool.query(queryText)
         .then((result) => {
