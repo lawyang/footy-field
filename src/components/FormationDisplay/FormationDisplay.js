@@ -26,24 +26,24 @@ class FormationDisplay extends Component {
     }
     // get formation information on load
     componentDidMount(){
-        this.getFormationDetail();
+        // this.getFormationDetail();
         this.getFormationName();
     }
 
     //GET call for Formation Details
-    getFormationDetail = () => {
-        axios.get('/api/footy/details')
-            .then((response) => {
-                console.log('Success GET call for Formation', response.data);
-                this.setState({
-                    formationArr: response.data
-                })
-                console.log('this is formationarr',this.state.formationArr);
-            })
-            .catch((error) => {
-                console.log('Error Handling GET call for Formation Detail', error);
-            })
-    }
+    // getFormationDetail = () => {
+    //     axios.get('/api/footy/details')
+    //         .then((response) => {
+    //             console.log('Success GET call for Formation', response.data);
+    //             this.setState({
+    //                 formationArr: response.data
+    //             })
+    //             console.log('this is formationarr',this.state.formationArr);
+    //         })
+    //         .catch((error) => {
+    //             console.log('Error Handling GET call for Formation Detail', error);
+    //         })
+    // }
 
     //Get call for Formation Name
     getFormationName = () => {
@@ -70,8 +70,14 @@ class FormationDisplay extends Component {
     handleName = (id) => {
         console.log('test est', id);
         axios.get(`/api/footy/details/${id}`)
-        this.setState({ anchorEl: null });
-        
+            .then((response) => {
+                console.log('did it work',response.data);
+                // this.setState({formationArr: reponse.data})
+                // this.setState({ anchorEl: null });
+            })
+            .catch((error) => {
+                console.log('Error it did not work', error);  
+            })     
     }
 
     render(){
