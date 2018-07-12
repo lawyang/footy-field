@@ -14,9 +14,9 @@ import Header from './components/Header/Header';
 import LoginPage from './components/LoginPage/LoginPage';
 import RegisterPage from './components/RegisterPage/RegisterPage';
 import UserPage from './components/UserPage/UserPage';
-import InfoPage from './components/InfoPage/InfoPage';
 import FormationPage from './pages/Formation/Formation';
 import ResourcePage from './pages/Resource/Resource';
+import AddFormation from './pages/AddFormation/AddFormation';
 
 import './styles/main.css';
 
@@ -39,8 +39,8 @@ const App = () => (
           component={UserPage}
         />
         <Route
-          path="/info"
-          component={InfoPage}
+          path="/addFormation"
+          component={AddFormation}
         />
         <Route
           path="/formation"

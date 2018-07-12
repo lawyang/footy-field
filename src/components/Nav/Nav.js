@@ -17,12 +17,17 @@ const Nav = () => (
           </Link>
         </li>
         <li>
-          <Link to="formation">
+          <Link to="/addFormation">
+            New Formation
+          </Link>
+        </li>
+        <li>
+          <Link to="/formation">
             Formations
           </Link>
         </li>
         <li>
-          <Link to="resource">
+          <Link to="/resource">
             Resources
           </Link>
         </li>
