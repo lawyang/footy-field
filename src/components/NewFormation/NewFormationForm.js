@@ -15,8 +15,36 @@ class NewFormationForm extends Component {
     constructor(){
         super()
         this.state = {
-
+            newFormation: {
+                formationName: '',
+                structure: '',
+                image_url: '',
+                strengths: '',
+                weaknesses: '',
+                notes: ''
+            }
         }
+    }
+
+    handleChange = (formation) => (event) => {
+        this.setState({
+            newFormation: {
+                ...this.state.newFormation,
+                [formation]: event.target.value,
+                [formation]: event.target.value,
+                [formation]: event.target.value,
+                [formation]: event.target.value,
+                [formation]: event.target.value,
+                [formation]: event.target.value,
+            }
+            
+        })
+        console.log(this.state.newFormation)
+    }
+
+    handleClick = () => {
+          this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
+
     }
 
     render(){
@@ -28,32 +56,28 @@ class NewFormationForm extends Component {
                         <h1 className="detailHead">
                             Add New Formation
                         </h1>
-                        <TextField className="addNew" label="formationName"/>
                         <br/>
-                        <TextField className="addNew" label="Structure"/>
+                        <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formationName')} />
                         <br/>
-                        <TextField className="addNew" label="Formation Image URL"/>
+                        <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} />
+                        <br/>
+                        <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/>
                         <br/>                       
-                        <TextField className="addNew" label="Formation Strengths"/>
+                        <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>
                         <br/>
-                        <TextField className="addNew" label="Formation Weaknesses"/>
+                        <TextField className="addNew" name='weaknesses' label="Formation Weaknesses" onChange={this.handleChange('weaknesses')}/>
                         <br/>                        
-                        <TextField className="addNew" label="Notes" multiline="true" rows="9"/>
+                        <TextField className="addNew" name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
                         <br/>
-                        <Button size="medium">
-                        Medium
-                        </Button>
+                        <Button size="medium" variant="contained" color="primary" onClick={this.handleClick}  fullWidth={true} >Add</Button>
+                        <br/>
                     </Paper>
                     </div>
                     <div className="grid-item">3</div>
                     <div className="grid-item">4</div>
-
             </div>
         )
     }
-
-
-
 }
 
 export default connect(mapStateToProps)(NewFormationForm);

@@ -14,7 +14,7 @@ ul {
 .grid-item{
     /* background-color: rgb(152, 205, 248); */
     width: auto;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
     /* padding: 20px; */
     font-size: 20px;
     text-align: left;
@@ -22,7 +22,7 @@ ul {
 
 .grid-item-footer{
     width: auto;
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
     /* padding: 20px; */
     font-size: 20px;
     text-align: left;
