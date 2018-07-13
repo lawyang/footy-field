@@ -30,7 +30,7 @@ class NewFormationForm extends Component {
     componentDidMount = () => {
 
 
-  }
+    }
 
     handleChange = (formation) => (event) => {
         this.setState({
@@ -48,11 +48,6 @@ class NewFormationForm extends Component {
 
     handleClick = () => {
         this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state.newFormation} )
-        this.clearInputs();
-        console.log('hello i am working');
-    }
-    
-    clearInputs = () => {
         this.setState({
             newFormation:{
                 formationName: '',
@@ -68,8 +63,7 @@ class NewFormationForm extends Component {
     render(){
         return(
             <div className="grid-container">
-                    <div className="grid-item">1</div>
-                    <div className="grid-item-2">
+                    <div className="grid-item">
                     <Paper elevation={4}>
                         <h1 className="detailHead">
                             Add New Formation
@@ -90,10 +84,10 @@ class NewFormationForm extends Component {
                         <br/>
                         <Button size="medium" variant="contained" color="primary" onClick={this.handleClick}  fullWidth={true} >Add</Button>
                         <br/>
-s                    </Paper>
+                    </Paper>
                     </div>
-                    <div className="grid-item">3</div>
-                    <div className="grid-item">4</div>
+                    <div className="grid-item"></div>
+                    <div className="grid-item"></div>
             </div>
         )
     }

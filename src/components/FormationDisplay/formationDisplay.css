@@ -1,9 +1,10 @@
-.grid-container {
+.grid-container-display {
     display: grid;
     grid-template-columns: auto auto auto;
     /* padding: 10px; */
     background-color: rgb(255, 255, 255);
-    margin: 40px;
+    margin-top: 10px;
+    grid-gap: 3px
 }
 
 ul {
@@ -12,20 +13,11 @@ ul {
 }
 
 .grid-item{
-    /* background-color: rgb(152, 205, 248); */
-    width: auto;
+    background-color: rgb(45, 151, 238);
     border: 1px solid rgba(0, 0, 0, 0.8);
     /* padding: 20px; */
     font-size: 20px;
-    text-align: left;
-}
-
-.grid-item-footer{
-    width: auto;
-    border: 1px solid rgba(0, 0, 0, 0.8);
-    /* padding: 20px; */
-    font-size: 20px;
-    text-align: left;
+    text-align: left;    width: 50px;
 }
 
 #formationName{
@@ -35,14 +27,8 @@ ul {
     font-size: 5px;
 }
 
-#formationDetail{
-    color: blue;
-    width: 350px;
-    font-size: 15px;   
-    text-align: left;
+.diagram{
+    width: 450px;
+    /* height: 700px; */
 }
 
-.detailHead {
-    color: rgb(69, 72, 236);
-    text-align: center;
-}

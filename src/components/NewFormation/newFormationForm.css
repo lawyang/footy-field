@@ -1,9 +1,10 @@
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
     /* padding: 10px; */
-    background-color: rgb(255, 255, 255);
-    margin: 40px;
+    /* background-color: rgb(255, 255, 255); */
+    /* margin: 40px; */
+    width: auto;
 }
 
 ul {
@@ -13,7 +14,7 @@ ul {
 
 .grid-item{
     /* background-color: rgb(152, 205, 248); */
-    width: auto;
+    width: 500px;
     /* border: 1px solid rgba(0, 0, 0, 0.8); */
     /* padding: 20px; */
     font-size: 20px;
