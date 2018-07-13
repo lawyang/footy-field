@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button';
 
 
 const mapStateToProps = state => ({
-
+    
 })
 
 class NewFormationForm extends Component {
@@ -26,6 +26,12 @@ class NewFormationForm extends Component {
         }
     }
 
+
+    componentDidMount = () => {
+
+
+  }
+
     handleChange = (formation) => (event) => {
         this.setState({
             newFormation: {
@@ -37,14 +43,26 @@ class NewFormationForm extends Component {
                 [formation]: event.target.value,
                 [formation]: event.target.value,
             }
-            
         })
-        console.log(this.state.newFormation)
     }
 
     handleClick = () => {
-          this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
-
+        this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state.newFormation} )
+        this.clearInputs();
+        console.log('hello i am working');
+    }
+    
+    clearInputs = () => {
+        this.setState({
+            newFormation:{
+                formationName: '',
+                structure: '',
+                image_url: '',
+                strengths: '',
+                weaknesses: '',
+                notes: ''
+            }
+        })
     }
 
     render(){
@@ -69,9 +87,10 @@ class NewFormationForm extends Component {
                         <br/>                        
                         <TextField className="addNew" name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
                         <br/>
+                        <br/>
                         <Button size="medium" variant="contained" color="primary" onClick={this.handleClick}  fullWidth={true} >Add</Button>
                         <br/>
-                    </Paper>
+s                    </Paper>
                     </div>
                     <div className="grid-item">3</div>
                     <div className="grid-item">4</div>

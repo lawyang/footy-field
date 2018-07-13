@@ -9,6 +9,7 @@ import { triggerLogout } from '../../redux/actions/loginActions';
 
 const mapStateToProps = state => ({
   user: state.user,
+  id: state.id
 });
 
 class UserPage extends Component {

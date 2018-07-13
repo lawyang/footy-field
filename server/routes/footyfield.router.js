@@ -39,8 +39,21 @@ router.get('/formation', (req, res) => {
 /**
  * POST route template
  */
-router.post('/details', (req, res) => {
-
+router.post('/', (req, res) => {
+    const newForm = req.body
+    const id = req.user.id;
+    console.log("hi", newForm, id);
+    const queryText = "INSERT INTO formation_detail (formation_name, structure, image_url, strengths, weaknesses, notes, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+    pool.query(queryText, [newForm.formationName, newForm.structure, newForm.image_url, newForm.strengths, newForm.weaknesses, newForm.notes, id])
+        .then(() => {
+            console.log('successfull POST');
+            res.sendStatus(201);
+        })
+        .catch((error) => {
+            console.log('Error Posting', error);
+            res.sendStatus(500);
+        })
+            
 });
 
 module.exports = router;
