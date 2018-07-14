@@ -8,7 +8,7 @@ router.get('/details/:id', (req, res) => {
     console.log('in get call from the router');
     //Need to replace the WHERE to what is selected
     let id = req.params.id
-    const queryText = `SELECT id, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE id=${id}`;
+    const queryText = `SELECT id, formation_name, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE id=${id}`;
     pool.query(queryText)
         .then((result) => {
             console.log('Successful GET call', result);

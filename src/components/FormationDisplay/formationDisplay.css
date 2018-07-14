@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: auto auto auto;
     /* padding: 10px; */
-    background-color: rgb(255, 255, 255);
+    /* background-color: rgb(255, 255, 255); */
     margin-top: 10px;
     grid-gap: 3px
 }
@@ -13,8 +13,8 @@ ul {
 }
 
 .grid-item{
-    background-color: rgb(45, 151, 238);
-    border: 1px solid rgba(0, 0, 0, 0.8);
+    /* background-color: rgb(45, 151, 238); */
+    /* border: 1px solid rgba(0, 0, 0, 0.8); */
     /* padding: 20px; */
     font-size: 20px;
     text-align: left;    width: 50px;
@@ -31,4 +31,3 @@ ul {
     width: 450px;
     /* height: 700px; */
 }
-
