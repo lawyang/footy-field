@@ -52,12 +52,25 @@ class NewFormationForm extends Component {
             newFormation:{
                 formationName: '',
                 structure: '',
-                image_url: '',
+                // image_url: '',
                 strengths: '',
                 weaknesses: '',
                 notes: ''
             }
         })
+    }
+
+    fileSelectedHandler = (event) => {
+        console.log(event.target.files[0]);
+        this.setState({
+            image_url: event.target.files[0]
+        })
+    }
+
+    uploadHandler = () => {
+        //send to sagas -> redux -> footyRouter
+        console.log(this.state.selectedFile);
+        
     }
 
     render(){
@@ -73,6 +86,14 @@ class NewFormationForm extends Component {
                         <br/>
                         <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} />
                         <br/>
+                        <input 
+                        type="file" 
+                        onChange={this.fileSelectedHandler} 
+                        style={{display: 'none'}}
+                        ref={fileInput => this.fileInput = fileInput}
+                        />
+                        <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
+                        <button onClick={this.uploadHandler}>Upload</button>
                         <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/>
                         <br/>                       
                         <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>

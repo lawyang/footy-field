@@ -11,7 +11,8 @@ import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
-
+import { Path } from 'paper';
+import { PaperScope } from 'paper'
 
 const mapStateToProps = state => ({
 
@@ -20,6 +21,7 @@ const mapStateToProps = state => ({
 class FormationDisplay extends Component {
     constructor(){
         super();
+        window['paper'] = new PaperScope();
         this.state = {
             formationArr: [],
             nameArr: [],
@@ -31,6 +33,7 @@ class FormationDisplay extends Component {
     componentDidMount(){
         // this.getFormationDetail();
         this.getFormationName();
+
     }
 
     //Get call for Formation Name
@@ -118,37 +121,23 @@ class FormationDisplay extends Component {
 
 
                 <div className="grid-item">
-                    {/* <Paper elevation={1}> */}
-                        {/* <p>
-                            Formation Details
-                        </p>
-                        {this.state.formationArr.map((detail) => 
-                            <ul key={detail.id}>
-                                    <li>Strengths: {detail.strengths}</li>
-                                    <li>Weaknesses: {detail.weaknesses}</li>
-                                    <li>Notes: {detail.notes}</li>
-                            </ul>
-                        )} */}
-                    {/* </Paper> */}
-                    {/* <Card>
-                        <CardContent> */}
                         <Typography className="description">
                             Formation Information
                         </Typography>
                         {this.state.formationArr.map((detail) => 
                         <Card>
                         <CardContent>
+                        <Typography>
                         <p>Formation Name: {detail.formation_name}</p>
                             <ul key={detail.id}>
                                     <li>Strengths: {detail.strengths}</li>
                                     <li>Weaknesses: {detail.weaknesses}</li>
                                     <li>Notes: {detail.notes}</li>
                             </ul>
-                            </CardContent>
+                            </Typography>
+                        </CardContent>
                     </Card>
                         )}
-                        {/* </CardContent>
-                    </Card> */}
                 </div>
             </div>
         )
