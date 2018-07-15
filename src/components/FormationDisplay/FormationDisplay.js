@@ -19,6 +19,9 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { CardHeader } from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 
 const mapStateToProps = state => ({
 
@@ -33,7 +36,7 @@ class FormationDisplay extends Component {
             nameArr: [],
             anchorEl: null,
             open: false,
-            expanded: false
+            expanded: false,
         }
     }
     // get formation information on load
@@ -59,14 +62,13 @@ class FormationDisplay extends Component {
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
-      };
+    };
     
     handleClose = () => {
         this.setState({ anchorEl: null });
     };
 
     handleName = (id) => {
-        console.log('test est', id);
         axios.get(`/api/footy/details/${id}`)
             .then((response) => {
                 console.log('did it work',response.data);
@@ -80,16 +82,20 @@ class FormationDisplay extends Component {
 
     handleOpen = () => {
         this.setState({ open: true });
-      };
-    
-      handleClose = () => {
-        this.setState({ open: false });
-      };
+    };
 
-      handleExpandClick = () => {
+    handleClose = () => {
+        this.setState({ open: false });
+    };
+
+    handleExpandClick = () => {
         this.setState(state => ({ expanded: !state.expanded }));
-      };
+    };
     
+    handleDelete = (id) => {
+        console.log('ID to Delete',id);
+        this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id})
+    }
 
     render(){
         const { anchorEl } = this.state;
@@ -116,66 +122,49 @@ class FormationDisplay extends Component {
                         )}
                     </Menu>
                 </div>
-
-
-                {/* <div className="grid-item"> */}
-                    {/* <Paper elevation={1} className="diagram">
-                        <Typography className="description">
-                            Field View
-                        </Typography>
-                        {this.state.formationArr.map((detail) => 
-                            <div key={detail.id} className="fieldImage">
-                                <img alt="field" src={detail.image_url} />
-                            </div>
-                        )} */}
-                    {/* </Paper> */}
-                {/* </div> */}
-
-
                 <div className="grid-item">
                         <Typography className="description">
                             Formation Information
                         </Typography>
                         {this.state.formationArr.map((detail) => 
                         <Card  key={detail.id}>
+                        <CardHeader title={detail.formation_name}/>                        
                         <CardContent>
-                        <Typography>
-                        Formation Name: {detail.formation_name}
-                            <ul>
-                                    <li>Strengths: {detail.strengths}</li>
-                                    <li>Weaknesses: {detail.weaknesses}</li>
-                                    <li>Notes: {detail.notes}</li>
-                            </ul>
+                                <ul>
+                            <Typography>
+                                        <li>Structure: {detail.structure}</li>
+                                        <li>Strengths: {detail.strengths}</li>
+                                        <li>Weaknesses: {detail.weaknesses}</li>
+                                        <li>Notes: {detail.notes}</li>
                             </Typography>
+                                </ul>
                         </CardContent>
-
-
                         <CardActions  disableActionSpacing>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon />
-            </IconButton>
-            <IconButton aria-label="Share">
-              <ShareIcon />
-            </IconButton>
-            <IconButton
-              onClick={this.handleExpandClick}
-              aria-expanded={this.state.expanded}
-              aria-label="Show more"
-            >
-              <ExpandMoreIcon />
-            </IconButton>
-          </CardActions>
-          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-            <CardContent>
-              <div>
-              {this.state.formationArr.map((detail) => 
-                            <div key={detail.id} className="fieldImage">
-                                <img alt="field" src={detail.image_url} />
+                            <IconButton aria-label="Edit">
+                                <EditIcon />
+                            </IconButton>
+                            <IconButton aria-label="Delete" onClick={() => this.handleDelete(detail.id)}>
+                                <DeleteIcon />
+                            </IconButton>
+                            <IconButton
+                            onClick={this.handleExpandClick}
+                            aria-expanded={this.state.expanded}
+                            aria-label="Show more"
+                            >
+                            <ExpandMoreIcon />
+                            </IconButton>
+                        </CardActions>
+                        <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+                            <CardContent>
+                            <div>
+                                {this.state.formationArr.map((detail) => 
+                                    <div key={detail.id} className="fieldImage">
+                                        <img alt="field" src={detail.image_url} />
+                                    </div>
+                                )}
                             </div>
-                        )}
-              </div>
-            </CardContent>
-          </Collapse>
+                        </CardContent>
+                        </Collapse>
                     </Card>
                         )}
                 </div>
