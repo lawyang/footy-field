@@ -55,9 +55,10 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    console.log('DELETE', id);
-    const queryText = `DELETE FROM formation_detail WHERE id=${id}`;
-    pool.query(queryText)
+    console.log('this thing hre is', id);    
+    console.log(`delete thing ${id}`);
+    const queryText = `DELETE FROM formation_detail WHERE id=$1`;
+    pool.query(queryText, [id])
         .then(() => {
             console.log('HANDLED DELETE CALL');
             res.sendStatus(201);

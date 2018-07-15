@@ -7,10 +7,11 @@ import FormationDisplay from '../../components/FormationDisplay/FormationDisplay
 
 function* deleteFormation(action) {
     try{
-        yield call(axios.delete, '/api/footy/:id', action.payload);
-        console.log('try DELETE');
+        const id = action.payload;
+        console.log('try DELETE', action.payload);
+        yield call(axios.delete, `/api/footy/${id}`, action.payload);
     } catch (error) {
-        console.log('Error POSTING', error);
+        console.log('Error Deleting', error);
     }
 }
 
