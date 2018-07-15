@@ -94,6 +94,7 @@ class NewFormationForm extends Component {
                         />
                         <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
                         <button onClick={this.uploadHandler}>Upload</button>
+                        <br/>
                         <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/>
                         <br/>                       
                         <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>

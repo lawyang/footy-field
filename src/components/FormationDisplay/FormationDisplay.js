@@ -13,6 +13,12 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import { Path } from 'paper';
 import { PaperScope } from 'paper'
+import Collapse from '@material-ui/core/Collapse';
+import IconButton from '@material-ui/core/IconButton';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import ShareIcon from '@material-ui/icons/Share';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 const mapStateToProps = state => ({
 
@@ -26,7 +32,8 @@ class FormationDisplay extends Component {
             formationArr: [],
             nameArr: [],
             anchorEl: null,
-            open: false
+            open: false,
+            expanded: false
         }
     }
     // get formation information on load
@@ -79,6 +86,11 @@ class FormationDisplay extends Component {
         this.setState({ open: false });
       };
 
+      handleExpandClick = () => {
+        this.setState(state => ({ expanded: !state.expanded }));
+      };
+    
+
     render(){
         const { anchorEl } = this.state;
         return(
@@ -106,8 +118,8 @@ class FormationDisplay extends Component {
                 </div>
 
 
-                <div className="grid-item">
-                    {/* <Paper elevation={1} className="diagram"> */}
+                {/* <div className="grid-item"> */}
+                    {/* <Paper elevation={1} className="diagram">
                         <Typography className="description">
                             Field View
                         </Typography>
@@ -115,9 +127,9 @@ class FormationDisplay extends Component {
                             <div key={detail.id} className="fieldImage">
                                 <img alt="field" src={detail.image_url} />
                             </div>
-                        )}
+                        )} */}
                     {/* </Paper> */}
-                </div>
+                {/* </div> */}
 
 
                 <div className="grid-item">
@@ -125,17 +137,45 @@ class FormationDisplay extends Component {
                             Formation Information
                         </Typography>
                         {this.state.formationArr.map((detail) => 
-                        <Card>
+                        <Card  key={detail.id}>
                         <CardContent>
                         <Typography>
-                        <p>Formation Name: {detail.formation_name}</p>
-                            <ul key={detail.id}>
+                        Formation Name: {detail.formation_name}
+                            <ul>
                                     <li>Strengths: {detail.strengths}</li>
                                     <li>Weaknesses: {detail.weaknesses}</li>
                                     <li>Notes: {detail.notes}</li>
                             </ul>
                             </Typography>
                         </CardContent>
+
+
+                        <CardActions  disableActionSpacing>
+            <IconButton aria-label="Add to favorites">
+              <FavoriteIcon />
+            </IconButton>
+            <IconButton aria-label="Share">
+              <ShareIcon />
+            </IconButton>
+            <IconButton
+              onClick={this.handleExpandClick}
+              aria-expanded={this.state.expanded}
+              aria-label="Show more"
+            >
+              <ExpandMoreIcon />
+            </IconButton>
+          </CardActions>
+          <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+            <CardContent>
+              <div>
+              {this.state.formationArr.map((detail) => 
+                            <div key={detail.id} className="fieldImage">
+                                <img alt="field" src={detail.image_url} />
+                            </div>
+                        )}
+              </div>
+            </CardContent>
+          </Collapse>
                     </Card>
                         )}
                 </div>
