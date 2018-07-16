@@ -123,9 +123,6 @@ class FormationDisplay extends Component {
                     </Menu>
                 </div>
                 <div className="grid-item">
-                        <Typography className="description">
-                            Formation Information
-                        </Typography>
                         {this.state.formationArr.map((detail) => 
                         <Card  key={detail.id}>
                         <CardHeader title={detail.formation_name}/>                        
@@ -159,7 +156,7 @@ class FormationDisplay extends Component {
                             <div>
                                 {this.state.formationArr.map((detail) => 
                                     <div key={detail.id} className="fieldImage">
-                                        <img alt="field" src={detail.image_url} />
+                                        <img alt="field" src={detail.path} />
                                     </div>
                                 )}
                             </div>

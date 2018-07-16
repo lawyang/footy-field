@@ -55,3 +55,12 @@ ul {
 .submitButton{
     width: 200px;
 }
+
+.newFormation{
+    width: auto;
+    height: auto;
+}
+
+.selectStructure{
+    width: 200px;
+}

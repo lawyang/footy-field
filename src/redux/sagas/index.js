@@ -3,7 +3,7 @@ import userSaga from './userSaga';
 import loginSaga from './loginSaga';
 import newFormationSaga from './newFormationSaga';
 import deleteFormationSaga from './deleteFormationSaga';
-
+import getFormationSaga from './getFormationSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -11,6 +11,7 @@ export default function* rootSaga() {
     loginSaga(),
     newFormationSaga(),
     deleteFormationSaga(),
+    getFormationSaga(),
     // watchIncrementAsync()
   ]);
 }

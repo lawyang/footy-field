@@ -4,16 +4,21 @@ import './newFormationForm.css';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import { MenuItem, Typography } from '@material-ui/core';
+import InputLabel from '@material-ui/core/InputLabel';
+import Select from '@material-ui/core/Select';
+import FormControl from '@material-ui/core/FormControl';
+import getStructureReducer from '../../redux/reducers/formationDetailReducer';
 
-
-const mapStateToProps = state => ({
-    
+const mapReduxStateToProps = (reduxStore) => ({
+    structure: reduxStore.getStructureReducer,
 })
 
 class NewFormationForm extends Component {
     constructor(){
         super()
         this.state = {
+            displayStructure: [],
             newFormation: {
                 formationName: '',
                 structure: '',
@@ -27,8 +32,16 @@ class NewFormationForm extends Component {
 
 
     componentDidMount = () => {
-
+        
+        console.log(this.props.structure);
+        
     }
+
+    // componentWillReceiveProps = () => {
+    //     this.setState({
+    //         displayStructure: this.props.structure
+    //     })
+    // }
 
     handleChange = (formation) => (event) => {
         this.setState({
@@ -54,7 +67,7 @@ class NewFormationForm extends Component {
                 newFormation:{
                     formationName: '',
                     structure: '',
-                    // image_url: '',
+                    image_url: '',
                     strengths: '',
                     weaknesses: '',
                     notes: ''
@@ -70,15 +83,17 @@ class NewFormationForm extends Component {
         })
     }
 
-    uploadHandler = () => {
-        //send to sagas -> redux -> footyRouter
-        console.log(this.state.selectedFile);
+    handleImage = (event) => {
+        this.props.dispatch({type: 'FETCH_STRUCTURE'});
+        console.log('hello');
         
     }
 
+
+
     render(){
         return(
-            <div>
+            <form className="newFormation">
                     <div className="center">
                     <Paper elevation={4}>
                     <div className="centerContent">
@@ -90,7 +105,7 @@ class NewFormationForm extends Component {
                         <br/>
                         <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} />
                         <br/>
-                        <input 
+                        {/* <input 
                         type="file" 
                         onChange={this.fileSelectedHandler} 
                         style={{display: 'none'}}
@@ -99,7 +114,22 @@ class NewFormationForm extends Component {
                         label="Formation Image Url"
                         />
                         <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
-                        <button onClick={this.uploadHandler}>Upload</button>
+                        <button onClick={this.uploadHandler}>Upload</button> */}
+                        <FormControl required className="selectStructure">
+                        <InputLabel htmlFor="structure">Formation Structure</InputLabel>
+                        <Select
+                        value={this.state.image_url}
+                        onChange={this.handleImage}
+                        inputProps={{
+                            id: 'structure'
+                        }}
+                        >
+                            {/* {this.props.structure.map((structure) => 
+                            <MenuItem key={structure.id}>{structure.structure}</MenuItem>)} */}
+                        </Select>
+                        </FormControl>
+                        <pre>hi: {JSON.stringify(this.props.structure)}</pre>
+
                         <br/>
                         <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/>
                         <br/>                       
@@ -118,9 +148,9 @@ class NewFormationForm extends Component {
                     </div>
                     <div className="grid-item"></div>
                     <div className="grid-item"></div>
-            </div>
+            </form>
         )
     }
 }
 
-export default connect(mapStateToProps)(NewFormationForm);
+export default connect(mapReduxStateToProps)(NewFormationForm);
