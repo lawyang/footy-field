@@ -34,6 +34,24 @@ ul {
 }
 
 .addNew {
-    width: 300px;
+    width: 100%;
+}
 
+.center{
+    margin: auto;
+    width: 50%;
+}
+
+.centerContent{
+    margin: auto;
+    width: 60%;
+    /* padding: 5px; */
+}
+
+.detailHead{
+    text-align: center;
+}
+
+.submitButton{
+    width: 200px;
 }

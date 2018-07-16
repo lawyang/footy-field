@@ -64,9 +64,9 @@ class FormationDisplay extends Component {
         this.setState({ anchorEl: event.currentTarget });
     };
     
-    handleClose = () => {
-        this.setState({ anchorEl: null });
-    };
+    // handleClose = () => {
+    //     this.setState({ anchorEl: null });
+    // };
 
     handleName = (id) => {
         axios.get(`/api/footy/details/${id}`)
@@ -106,7 +106,7 @@ class FormationDisplay extends Component {
                         aria-owns={anchorEl ? 'simple-menu' : null}
                         aria-haspopup="true"
                         onClick={this.handleClick}
-                        color="default"
+                        color="primary"
                         variant="contained"
                         >
                         Choose a Formation
@@ -147,9 +147,9 @@ class FormationDisplay extends Component {
                                 <DeleteIcon />
                             </IconButton>
                             <IconButton
-                            onClick={this.handleExpandClick}
-                            aria-expanded={this.state.expanded}
-                            aria-label="Show more"
+                                onClick={this.handleExpandClick}
+                                aria-expanded={this.state.expanded}
+                                aria-label="Show more"
                             >
                             <ExpandMoreIcon />
                             </IconButton>

@@ -8,7 +8,8 @@ router.get('/details/:id', (req, res) => {
     console.log('in get call from the router');
     //Need to replace the WHERE to what is selected
     let id = req.params.id
-    const queryText = `SELECT id, formation_name, structure, image_url, strengths, weaknesses, notes FROM formation_detail WHERE id=${id}`;
+    // const queryText = `SELECT id, formation_name, structure, image_id, strengths, weaknesses, notes FROM formation_detail WHERE id=${id}`;
+    const queryText = `SELECT formation_detail.id, username, email, formation_name, structure, image_id, strengths, weaknesses, notes, name, path FROM formation_detail left join users on user_id = users.id right join formation_image on image_id = formation_image.id WHERE formation_detail.id=${id};`;
     pool.query(queryText)
         .then((result) => {
             console.log('Successful GET call', result);
@@ -22,7 +23,7 @@ router.get('/details/:id', (req, res) => {
 
 // GET route for formation name
 router.get('/formation', (req, res) => {
-    const queryText = "SELECT id, formation_name, structure, image_url, strengths, weaknesses, notes FROM formation_detail";
+    const queryText = "SELECT id, formation_name, structure, image_id, strengths, weaknesses, notes FROM formation_detail";
     pool.query(queryText)
         .then((result) => {
             console.log('GET call for Formation', result);
@@ -40,7 +41,7 @@ router.get('/formation', (req, res) => {
 router.post('/', (req, res) => {
     const newForm = req.body
     const id = req.user.id;
-    const queryText = "INSERT INTO formation_detail (formation_name, structure, image_url, strengths, weaknesses, notes, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)";
+    const queryText = "INSERT INTO formation_detail (formation_name, structure, image_id, strengths, weaknesses, notes, user_id) VALUES ($1, $2, $3, $4, $5, $6, $7)";
     pool.query(queryText, [newForm.formationName, newForm.structure, newForm.image_url, newForm.strengths, newForm.weaknesses, newForm.notes, id])
         .then(() => {
             console.log('successfull POST');
@@ -55,8 +56,7 @@ router.post('/', (req, res) => {
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;
-    console.log('this thing hre is', id);    
-    console.log(`delete thing ${id}`);
+    console.log('ID to delete:', id);
     const queryText = `DELETE FROM formation_detail WHERE id=$1`;
     pool.query(queryText, [id])
         .then(() => {

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import './newFormationForm.css';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
@@ -29,7 +28,6 @@ class NewFormationForm extends Component {
 
     componentDidMount = () => {
 
-
     }
 
     handleChange = (formation) => (event) => {
@@ -44,20 +42,25 @@ class NewFormationForm extends Component {
                 [formation]: event.target.value,
             }
         })
+        console.log(this.state.newFormation.formationName)
     }
 
     handleClick = () => {
-        this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state.newFormation} )
-        this.setState({
-            newFormation:{
-                formationName: '',
-                structure: '',
-                // image_url: '',
-                strengths: '',
-                weaknesses: '',
-                notes: ''
-            }
-        })
+        if(this.state.newFormation.formationName === ''){
+            alert('please fill all fields')
+        } else {
+            this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state.newFormation} )
+            this.setState({
+                newFormation:{
+                    formationName: '',
+                    structure: '',
+                    // image_url: '',
+                    strengths: '',
+                    weaknesses: '',
+                    notes: ''
+                }
+            })
+        } // end else statement
     }
 
     fileSelectedHandler = (event) => {
@@ -75,9 +78,10 @@ class NewFormationForm extends Component {
 
     render(){
         return(
-            <div className="grid-container">
-                    <div className="grid-item">
+            <div>
+                    <div className="center">
                     <Paper elevation={4}>
+                    <div className="centerContent">
                         <h1 className="detailHead">
                             Add New Formation
                         </h1>
@@ -91,6 +95,8 @@ class NewFormationForm extends Component {
                         onChange={this.fileSelectedHandler} 
                         style={{display: 'none'}}
                         ref={fileInput => this.fileInput = fileInput}
+                        name='image_url'
+                        label="Formation Image Url"
                         />
                         <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
                         <button onClick={this.uploadHandler}>Upload</button>
@@ -104,8 +110,10 @@ class NewFormationForm extends Component {
                         <TextField className="addNew" name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
                         <br/>
                         <br/>
-                        <Button size="medium" variant="contained" color="primary" onClick={this.handleClick}  fullWidth={true} >Add</Button>
+                        <Button className="submitButton" size="medium" variant="contained" color="primary" onClick={this.handleClick} >Add</Button>
                         <br/>
+                        <br/>
+                        </div>
                     </Paper>
                     </div>
                     <div className="grid-item"></div>
