@@ -8,7 +8,6 @@ const store = combineReducers({
   user,
   login,
   getStructureReducer,
-
 });
 
 export default store;

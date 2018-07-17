@@ -10,7 +10,7 @@ import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
 
 const mapReduxStateToProps = (reduxStore) => ({
-    structure: reduxStore.getStructureReducer,
+    structure: reduxStore.getStructureReducer.getStructureReducer,
 })
 
 class NewFormationForm extends Component {
@@ -29,18 +29,11 @@ class NewFormationForm extends Component {
         }
     }
 
-
     componentDidMount = () => {
-        
+        this.props.dispatch({type: 'FETCH_STRUCTURE'});
         console.log(this.props.structure);
-        this.handleImage();
-    }
 
-    // componentWillReceiveProps = () => {
-    //     this.setState({
-    //         displayStructure: this.props.structure
-    //     })
-    // }
+    }
 
     handleChange = (formation) => (event) => {
         this.setState({
@@ -72,7 +65,7 @@ class NewFormationForm extends Component {
                     notes: ''
                 }
             })
-        } // end else statement
+        }
     }
 
     fileSelectedHandler = (event) => {
@@ -81,14 +74,6 @@ class NewFormationForm extends Component {
             image_url: event.target.files[0]
         })
     }
-
-    handleImage = (event) => {
-        this.props.dispatch({type: 'FETCH_STRUCTURE'});
-        console.log('hello');
-        
-    }
-
-
 
     render(){
         return(
@@ -123,8 +108,8 @@ class NewFormationForm extends Component {
                             id: 'structure'
                         }}
                         >
-                            {this.props.structure.map((structure) => 
-                            <MenuItem key={structure.id}>{structure.structure}</MenuItem>)}
+                            {this.props.structure.map((taco) => 
+                            <MenuItem key={taco.id}>{taco.structure}</MenuItem>)}
                         </Select>
                         </FormControl>
                         <pre>hi: {JSON.stringify(this.props.structure)}</pre>
