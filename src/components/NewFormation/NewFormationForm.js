@@ -8,7 +8,6 @@ import { MenuItem, Typography } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
-import getStructureReducer from '../../redux/reducers/formationDetailReducer';
 
 const mapReduxStateToProps = (reduxStore) => ({
     structure: reduxStore.getStructureReducer,
@@ -34,7 +33,7 @@ class NewFormationForm extends Component {
     componentDidMount = () => {
         
         console.log(this.props.structure);
-        
+        this.handleImage();
     }
 
     // componentWillReceiveProps = () => {
@@ -115,17 +114,17 @@ class NewFormationForm extends Component {
                         />
                         <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
                         <button onClick={this.uploadHandler}>Upload</button> */}
-                        <FormControl required className="selectStructure">
+                        <FormControl className="selectStructure">
                         <InputLabel htmlFor="structure">Formation Structure</InputLabel>
                         <Select
-                        value={this.state.image_url}
+                        // value={this.state.image_url}
                         onChange={this.handleImage}
                         inputProps={{
                             id: 'structure'
                         }}
                         >
-                            {/* {this.props.structure.map((structure) => 
-                            <MenuItem key={structure.id}>{structure.structure}</MenuItem>)} */}
+                            {this.props.structure.map((structure) => 
+                            <MenuItem key={structure.id}>{structure.structure}</MenuItem>)}
                         </Select>
                         </FormControl>
                         <pre>hi: {JSON.stringify(this.props.structure)}</pre>
