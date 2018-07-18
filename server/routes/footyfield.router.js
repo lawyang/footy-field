@@ -53,16 +53,16 @@ router.get('/image', (req,res) => {
  */
 router.post('/', (req, res) => {
     const newForm = req.body;
-    console.log(newForm);
+    console.log('hello', newForm);
     const id = req.user.id;
     const queryText = "INSERT INTO formation_detail (formation_name, image_id, strengths, weaknesses, notes, user_id) VALUES ($1, $2, $3, $4, $5, $6)";
-    pool.query(queryText, [newForm.formationName, image_id, newForm.strengths, newForm.weaknesses, newForm.notes, id])
+        pool.query(queryText, [newForm.formation_Name, newForm.image_id, newForm.strengths, newForm.weaknesses, newForm.notes, id])
         .then(() => {
             console.log('successfull POST');
             res.sendStatus(201);
         })
         .catch((error) => {
-            console.log('Error Posting', error);
+            console.log('//////////////////Error Posting', error);
             res.sendStatus(500);
         })
             

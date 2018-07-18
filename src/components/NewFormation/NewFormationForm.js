@@ -17,7 +17,7 @@ class NewFormationForm extends Component {
     state = {
         image_id: '',
         newFormation: {
-            formationName: '',
+            formation_name: '',
             strengths: '',
             weaknesses: '',
             notes: ''
@@ -38,7 +38,7 @@ class NewFormationForm extends Component {
                 [formation]: event.target.value,
                 [formation]: event.target.value,
                 [formation]: event.target.value,
-                [formation]: event.target.value,
+                // [formation]: event.target.value,
             }
         })
         console.log(this.state.newFormation.formationName)
@@ -48,10 +48,10 @@ class NewFormationForm extends Component {
         if(this.state.newFormation.formationName === ''){
             alert('please fill all fields')
         } else {
-            this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state.newFormation} )
+            this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
             this.setState({
                 newFormation:{
-                    formationName: '',
+                    formation_name: '',
                     strengths: '',
                     weaknesses: '',
                     notes: ''
@@ -68,6 +68,7 @@ class NewFormationForm extends Component {
     render(){
         return(
             <form className="newFormation">
+                    <pre>hi: {JSON.stringify(this.state.image_id)}</pre>
                     <div className="center">
                     <Paper elevation={4}>
                     <div className="centerContent">
@@ -75,7 +76,7 @@ class NewFormationForm extends Component {
                             Add New Formation
                         </h1>
                         <br/>
-                        <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formationName')} />
+                        <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formation_Name')} />
                         <br/>
                         {/* <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} /> */}
                         <br/>
