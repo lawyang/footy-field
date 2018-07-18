@@ -38,7 +38,7 @@ class NewFormationForm extends Component {
                 [formation]: event.target.value,
                 [formation]: event.target.value,
                 [formation]: event.target.value,
-                // [formation]: event.target.value,
+                [formation]: event.target.value,
             }
         })
         console.log(this.state.newFormation.formationName)
@@ -76,7 +76,7 @@ class NewFormationForm extends Component {
                             Add New Formation
                         </h1>
                         <br/>
-                        <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formation_Name')} />
+                        <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
                         <br/>
                         {/* <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} /> */}
                         <br/>
