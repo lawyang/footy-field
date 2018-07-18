@@ -4,7 +4,7 @@ import axios from 'axios';
 
 function* fetchFormationStructure() {
     try{
-        const formationStructure = yield call(axios.get, '/api/footy/formation');
+        const formationStructure = yield call(axios.get, '/api/footy/image');
         yield put({type: 'SET_STRUCTURE', payload: formationStructure.data})
         console.log( formationStructure.data)
     } catch (error) {

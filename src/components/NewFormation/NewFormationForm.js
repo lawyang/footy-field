@@ -4,7 +4,7 @@ import './newFormationForm.css';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import { MenuItem, Typography } from '@material-ui/core';
+import { MenuItem } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
@@ -14,32 +14,26 @@ const mapReduxStateToProps = (reduxStore) => ({
 })
 
 class NewFormationForm extends Component {
-    constructor(){
-        super()
-        this.state = {
-            displayStructure: [],
-            newFormation: {
-                formationName: '',
-                structure: '',
-                image_url: '',
-                strengths: '',
-                weaknesses: '',
-                notes: ''
-            }
+    state = {
+        image_id: '',
+        newFormation: {
+            formationName: '',
+            strengths: '',
+            weaknesses: '',
+            notes: ''
         }
     }
+    
 
     componentDidMount = () => {
         this.props.dispatch({type: 'FETCH_STRUCTURE'});
-        console.log(this.props.structure);
-
+        console.log('image_id', this.state.newFormation);        
     }
 
     handleChange = (formation) => (event) => {
         this.setState({
             newFormation: {
                 ...this.state.newFormation,
-                [formation]: event.target.value,
                 [formation]: event.target.value,
                 [formation]: event.target.value,
                 [formation]: event.target.value,
@@ -58,8 +52,6 @@ class NewFormationForm extends Component {
             this.setState({
                 newFormation:{
                     formationName: '',
-                    structure: '',
-                    image_url: '',
                     strengths: '',
                     weaknesses: '',
                     notes: ''
@@ -68,11 +60,9 @@ class NewFormationForm extends Component {
         }
     }
 
-    fileSelectedHandler = (event) => {
-        console.log(event.target.files[0]);
-        this.setState({
-            image_url: event.target.files[0]
-        })
+    handleImage = (event) => {
+        this.setState({ image_id: event.target.value })
+        console.log('handleIamge', this.state.image_id);
     }
 
     render(){
@@ -87,35 +77,25 @@ class NewFormationForm extends Component {
                         <br/>
                         <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formationName')} />
                         <br/>
-                        <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} />
+                        {/* <TextField className="addNew" name="structure" label="Structure" onChange={this.handleChange('structure')} /> */}
                         <br/>
-                        {/* <input 
-                        type="file" 
-                        onChange={this.fileSelectedHandler} 
-                        style={{display: 'none'}}
-                        ref={fileInput => this.fileInput = fileInput}
-                        name='image_url'
-                        label="Formation Image Url"
-                        />
-                        <button onClick={() => this.fileInput.click()}>Select File to Upload</button>
-                        <button onClick={this.uploadHandler}>Upload</button> */}
                         <FormControl className="selectStructure">
-                        <InputLabel htmlFor="structure">Formation Structure</InputLabel>
-                        <Select
-                        // value={this.state.image_url}
-                        onChange={this.handleImage}
-                        inputProps={{
-                            id: 'structure'
-                        }}
-                        >
-                            {this.props.structure.map((taco) => 
-                            <MenuItem key={taco.id}>{taco.structure}</MenuItem>)}
-                        </Select>
+                            <InputLabel>Formation Structure</InputLabel>
+                            <Select
+                                value={this.state.image_id}
+                                onChange={ this.handleImage }
+                                name="image_id"
+                                inputProps={{
+                                    id: 'image_id',
+                                }}
+                            >
+                                {this.props.structure.map((taco) => 
+                                <MenuItem key={taco.id} value={taco.id} >{taco.name}</MenuItem>)}
+                            </Select>
                         </FormControl>
                         <pre>hi: {JSON.stringify(this.props.structure)}</pre>
-
                         <br/>
-                        <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/>
+                        {/* <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/> */}
                         <br/>                       
                         <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>
                         <br/>
