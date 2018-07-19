@@ -51,7 +51,7 @@ class SimpleModal extends React.Component {
 
     return (
       <div>
-        <IconButton aria-label="Edit" onClick={this.handleOpen}>
+        <IconButton variant="fab" color="secondary" aria-label="Edit" onClick={this.handleOpen}>
             <EditIcon/>
         </IconButton>
         <Modal
@@ -64,13 +64,7 @@ class SimpleModal extends React.Component {
             <EditIcon/>
         </IconButton> */}
           <div style={getModalStyle()} className={classes.paper}>
-            <Typography variant="title" id="modal-title">
-              Text in a modal
-            </Typography>
-            <Typography variant="subheading" id="simple-modal-description">
-              Duis mollis, est non commodo luctus, nisi erat porttitor ligula.
-            </Typography>
-            <SimpleModalWrapped />
+            <EditField />
           </div>
         </Modal>
       </div>

@@ -41,7 +41,6 @@ class NewFormationForm extends Component {
                 [formation]: event.target.value,
             }
         })
-        console.log(this.state.newFormation.formationName)
     }
 
     handleClick = () => {
