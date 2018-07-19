@@ -23,7 +23,6 @@ class AddFormation extends Component {
     }
     render(){
         let content = null;
-
         if (this.props.user.userName){
             content = (
                 <div>
@@ -31,7 +30,6 @@ class AddFormation extends Component {
                 </div>
             );
         };
-
         return(
             <div>
                 <Nav />

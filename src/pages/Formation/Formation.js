@@ -18,18 +18,13 @@ class FormationPage extends Component {
     componentDidMount() {
         this.props.dispatch({type: USER_ACTIONS.FETCH_USER});
     }
-
     componentDidUpdate() {
         if (!this.props.user.isLoading && this.props.user.userName === null) {
         this.props.history.push('home');
         }
     }
-
-
-
     render(){
         let content = null;
-
         if (this.props.user.userName){
             content = (
                 <div>
@@ -37,7 +32,6 @@ class FormationPage extends Component {
                 </div>
             );
         };
-
         return(
             <div>
                 <Nav />

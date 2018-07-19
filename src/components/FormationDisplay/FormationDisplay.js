@@ -2,26 +2,22 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import './formationDisplay.css';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
-import Modal from '@material-ui/core/Modal';
 import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import { Path } from 'paper';
-import { PaperScope } from 'paper'
+import CardContent from '@material-ui/core/CardContent';import { PaperScope } from 'paper'
 import Collapse from '@material-ui/core/Collapse';
 import IconButton from '@material-ui/core/IconButton';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { CardHeader } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
+import EditModal from '../EditModal/EditModal';
+import Modal from '@material-ui/core/Modal';
+
 
 const mapStateToProps = state => ({
 
@@ -63,10 +59,6 @@ class FormationDisplay extends Component {
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
     };
-    
-    // handleClose = () => {
-    //     this.setState({ anchorEl: null });
-    // };
 
     handleName = (id) => {
         axios.get(`/api/footy/details/${id}`)
@@ -96,6 +88,14 @@ class FormationDisplay extends Component {
         console.log('ID to Delete',id);
         this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id})
     }
+
+    handleOpenEdit = () => {
+        this.setState({ open: true });
+    };
+    
+    handleCloseEdit = () => {
+        this.setState({ open: false });
+    };
 
     render(){
         const { anchorEl } = this.state;
@@ -129,7 +129,6 @@ class FormationDisplay extends Component {
                         <CardContent>
                                 <ul>
                             <Typography>
-                                        <li>Structure: {detail.structure}</li>
                                         <li>Strengths: {detail.strengths}</li>
                                         <li>Weaknesses: {detail.weaknesses}</li>
                                         <li>Notes: {detail.notes}</li>
@@ -137,9 +136,7 @@ class FormationDisplay extends Component {
                                 </ul>
                         </CardContent>
                         <CardActions  disableActionSpacing>
-                            <IconButton aria-label="Edit">
-                                <EditIcon />
-                            </IconButton>
+                            <EditModal/>
                             <IconButton aria-label="Delete" onClick={() => this.handleDelete(detail.id)}>
                                 <DeleteIcon />
                             </IconButton>

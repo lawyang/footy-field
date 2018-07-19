@@ -68,7 +68,6 @@ class NewFormationForm extends Component {
     render(){
         return(
             <form className="newFormation">
-                    <pre>hi: {JSON.stringify(this.state.image_id)}</pre>
                     <div className="center">
                     <Paper elevation={4}>
                     <div className="centerContent">
@@ -94,7 +93,6 @@ class NewFormationForm extends Component {
                                 <MenuItem key={taco.id} value={taco.id} >{taco.name}</MenuItem>)}
                             </Select>
                         </FormControl>
-                        <pre>hi: {JSON.stringify(this.props.structure)}</pre>
                         <br/>
                         {/* <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/> */}
                         <br/>                       
