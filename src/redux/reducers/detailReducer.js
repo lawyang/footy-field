@@ -1,9 +1,9 @@
 import {combineReducers } from 'redux';
 
-const getStructureReducer = (state = [], action) => {
+const getDetailReducer = (state = [], action) => {
     switch (action.type) {
-        case 'SET_STRUCTURE':
-            console.log('handling set structure', action.payload);
+        case 'SET_DETAIL':
+            console.log('handling set DETAIL', action.payload);
             return [...action.payload]
             // return state.structure = action.payload;
         default:
@@ -13,5 +13,5 @@ const getStructureReducer = (state = [], action) => {
 };
 
 export default combineReducers({
-    getStructureReducer
+    getDetailReducer
 });

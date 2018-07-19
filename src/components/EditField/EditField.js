@@ -9,12 +9,11 @@ import TextField from '@material-ui/core/TextField';
 
 
 const mapReduxStoreToProps = reduxStore => ({
-
+    formationDetail: reduxStore.getDetailReducer.getDetailReducer
 })
 
 class EditField extends Component {
     state = {
-        open: false,
         newFormation: {
             formation_name: '',
             strengths: '',
@@ -23,9 +22,8 @@ class EditField extends Component {
         }
     }
 
-    handleClose = () => {
-        this.setState({open: false})
-        console.log(this.state);
+    handleClose = (id) => {  
+        console.log(id);
     }
 
     handleChange = (formation) => (event) => {
@@ -42,9 +40,17 @@ class EditField extends Component {
         console.log(this.state.newFormation)
     }
 
+    handleEdit = (id) => {
+
+    }
+
     render(){
         return(
             <div>
+            <pre>{JSON.stringify(this.props.detail)}</pre>
+            {/* {this.props.formationDetail.map((detail) => 
+
+            )} */}
             <Typography variant="title" id="modal-title">
               Edit Formation
             </Typography>

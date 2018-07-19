@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
@@ -7,6 +8,10 @@ import Button from '@material-ui/core/Button';
 import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import EditField from '../EditField/EditField';
+
+const mapReduxStateToProps = (reduxStore) => ({
+    formationDetail: reduxStore.getDetailReducer.getDetailReducer
+})
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;
@@ -33,6 +38,10 @@ const styles = theme => ({
   },
 });
 
+const mapReduxStoreToProps = reduxStore => ({
+
+})
+
 class SimpleModal extends React.Component {
   state = {
     open: false,
@@ -47,10 +56,11 @@ class SimpleModal extends React.Component {
   };
 
   render() {
-    const { classes } = this.props;
-
+    const { classes } = this.props;    
     return (
       <div>
+        <pre>{JSON.stringify(this.props.detail)}</pre>
+
         <IconButton variant="fab" color="secondary" aria-label="Edit" onClick={this.handleOpen}>
             <EditIcon/>
         </IconButton>
@@ -64,7 +74,7 @@ class SimpleModal extends React.Component {
             <EditIcon/>
         </IconButton> */}
           <div style={getModalStyle()} className={classes.paper}>
-            <EditField />
+            <EditField detail={this.props.detail}/>
           </div>
         </Modal>
       </div>
@@ -79,4 +89,4 @@ SimpleModal.propTypes = {
 // We need an intermediary variable for handling the recursive nesting.
 const SimpleModalWrapped = withStyles(styles)(SimpleModal);
 
-export default SimpleModalWrapped;
+export default connect(mapReduxStoreToProps)(SimpleModalWrapped);

@@ -14,13 +14,11 @@ import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { CardHeader } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
-import EditIcon from '@material-ui/icons/Edit';
 import EditModal from '../EditModal/EditModal';
-import Modal from '@material-ui/core/Modal';
 
 
-const mapStateToProps = state => ({
-
+const mapReduxStateToProps = (reduxStore) => ({
+    formationDetail: reduxStore.getDetailReducer.getDetailReducer
 })
 
 class FormationDisplay extends Component {
@@ -28,6 +26,7 @@ class FormationDisplay extends Component {
         super();
         window['paper'] = new PaperScope();
         this.state = {
+            targetId: 0,
             formationArr: [],
             nameArr: [],
             anchorEl: null,
@@ -38,23 +37,25 @@ class FormationDisplay extends Component {
     // get formation information on load
     componentDidMount(){
         // this.getFormationDetail();
-        this.getFormationName();
-
+        // this.getFormationName();
+        this.fetchDetailTable()
+        console.log(this.props.formationDetail);
+        // this.props.dispatch({type: 'FETCH_DETAIL'});
     }
 
     //Get call for Formation Name
-    getFormationName = () => {
-        axios.get('/api/footy/formation')
-            .then((response) => {
-                this.setState({
-                    nameArr: response.data
-                })
-                console.log(this.state.nameArr);
-            })
-            .catch((error) => {
-                console.log('Error handling GET call for Formation Name', error);
-            })
-    }
+    // getFormationName = () => {
+    //     axios.get('/api/footy/formation')
+    //         .then((response) => {
+    //             this.setState({
+    //                 nameArr: response.data
+    //             })
+    //             console.log(this.state.nameArr);
+    //         })
+    //         .catch((error) => {
+    //             console.log('Error handling GET call for Formation Name', error);
+    //         })
+    // }
 
     handleClick = event => {
         this.setState({ anchorEl: event.currentTarget });
@@ -97,10 +98,19 @@ class FormationDisplay extends Component {
         this.setState({ open: false });
     };
 
+    fetchDetailTable = () => {
+        this.props.dispatch({type: 'FETCH_DETAIL'});
+        this.setState({
+            nameArr: this.props.formationDetail
+        })
+        console.log(this.state.nameArr)
+    }
+
     render(){
         const { anchorEl } = this.state;
         return(
             <div className="grid-container-display">
+            {/* <pre>{JSON.stringify(this.props.formationDetail)}</pre> */}
                 <div>
                     <Button
                         aria-owns={anchorEl ? 'simple-menu' : null}
@@ -117,7 +127,7 @@ class FormationDisplay extends Component {
                         open={Boolean(anchorEl)}
                         onClose={this.handleClose}
                         >
-                        {this.state.nameArr.map((name) => 
+                        {this.props.formationDetail.map((name) => 
                             <MenuItem key={name.id} onClick={()=> this.handleName(name.id)}>{name.formation_name}</MenuItem>
                         )}
                     </Menu>
@@ -136,7 +146,8 @@ class FormationDisplay extends Component {
                                 </ul>
                         </CardContent>
                         <CardActions  disableActionSpacing>
-                            <EditModal/>
+                            <EditModal detail={detail.id}/>
+                            <p>{detail.id}</p>
                             <IconButton aria-label="Delete" onClick={() => this.handleDelete(detail.id)}>
                                 <DeleteIcon />
                             </IconButton>
@@ -167,4 +178,8 @@ class FormationDisplay extends Component {
     }
 }
 
-export default connect(mapStateToProps)(FormationDisplay);
+export default connect(mapReduxStateToProps)(FormationDisplay);
+
+// {this.props.reduxStore.logs.logListReducer.map(log => {
+//     return <AllResultsList logList={log} />
+//     })}

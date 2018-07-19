@@ -27,7 +27,7 @@ class NewFormationForm extends Component {
 
     componentDidMount = () => {
         this.props.dispatch({type: 'FETCH_STRUCTURE'});
-        console.log('image_id', this.state.newFormation);        
+        console.log('image_id', this.props.structure);        
     }
 
     handleChange = (formation) => (event) => {
