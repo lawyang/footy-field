@@ -35,6 +35,23 @@ router.get('/formation', (req, res) => {
         })
 })
 
+router.get('/update', (req, res) => {
+    console.log('id:', req.param.id);
+    let id = req.body
+    console.log('id2', id);
+    
+    const queryText = `SELECT * formation_detail WHERE id = $1`;
+        pool.query(queryText, [id])
+        .then((result) => {
+            console.log('GET call for Formation', result);
+            res.send(result.rows);
+        })
+        .catch((error) => {
+            console.log('Error handling Formation GET call', error);
+            res.sendStatus(500);
+        })
+})
+
 router.get('/image', (req,res) => {
     const queryText = 'SELECT * fROM formation_image';
     pool.query(queryText)
@@ -68,6 +85,15 @@ router.post('/', (req, res) => {
         })
             
 });
+
+router.put('/edit', (req, res) => {
+    const edit = req.body;
+    const id = req.body.id;
+    console.log('edit', req.body);
+    console.log('ID', id);
+    const queryText = ``
+})
+
 
 router.delete('/:id', (req, res) => {
     const id = req.params.id;

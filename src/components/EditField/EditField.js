@@ -14,12 +14,21 @@ const mapReduxStoreToProps = reduxStore => ({
 
 class EditField extends Component {
     state = {
+        array1: [],
+        updateId: '',
         newFormation: {
+            id: this.props.detail,
             formation_name: '',
             strengths: '',
             weaknesses: '',
             notes: ''
         }
+    }
+
+    componentDidMount(){        
+        // this.fetchDetailTable();
+        console.log(this.state.newFormation.id);
+        
     }
 
     handleClose = (id) => {  
@@ -41,15 +50,21 @@ class EditField extends Component {
     }
 
     handleEdit = (id) => {
-
+        console.log(id);     
+        this.props.dispatch({type: 'ADD_EDIT', payload: this.state.newFormation})   
     }
+
+    // fetchDetailTable = () => {
+    //     const id = this.props.detail;
+    //     console.log(id);
+    //     this.props.dispatch({type: 'FETCH_UPDATE_ID', payload: id});
+    // }
 
     render(){
         return(
             <div>
             <pre>{JSON.stringify(this.props.detail)}</pre>
             {/* {this.props.formationDetail.map((detail) => 
-
             )} */}
             <Typography variant="title" id="modal-title">
               Edit Formation
@@ -65,7 +80,7 @@ class EditField extends Component {
             <TextField className="addNew" name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
             <br/>
             <br/>
-            <Button variant="contained" color="secondary" onClick={()=>{this.handleClose()}}>Submit Edits</Button>
+            <Button variant="contained" color="secondary" onClick={()=>{this.handleEdit(this.props.detail)}}>Submit Edits</Button>
             </div>
         )
     }    

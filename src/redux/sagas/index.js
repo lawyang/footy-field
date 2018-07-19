@@ -5,6 +5,8 @@ import newFormationSaga from './newFormationSaga';
 import deleteFormationSaga from './deleteFormationSaga';
 import getFormationSaga from './getFormationSaga';
 import getFormationDetailSaga from './getDetailSaga';
+import getUpdatedIdSaga from './getUpdateIdSaga';
+import addEditSaga from './addEditSaga';
 
 export default function* rootSaga() {
   yield all([
@@ -14,6 +16,8 @@ export default function* rootSaga() {
     deleteFormationSaga(),
     getFormationSaga(),
     getFormationDetailSaga(),
+    getUpdatedIdSaga(),
+    addEditSaga(),
     // watchIncrementAsync()
   ]);
 }
