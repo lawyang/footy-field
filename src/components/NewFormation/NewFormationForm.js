@@ -8,6 +8,8 @@ import { MenuItem } from '@material-ui/core';
 import InputLabel from '@material-ui/core/InputLabel';
 import Select from '@material-ui/core/Select';
 import FormControl from '@material-ui/core/FormControl';
+import swal from 'sweetalert';
+
 
 const mapReduxStateToProps = (reduxStore) => ({
     structure: reduxStore.getStructureReducer.getStructureReducer,
@@ -45,7 +47,11 @@ class NewFormationForm extends Component {
 
     handleClick = () => {
         if(this.state.newFormation.formationName === '' || this.state.newFormation.strengths === '' || this.state.newFormation.weaknesses === ''){
-            alert('please fill all fields')
+            swal({
+                title: "Error!",
+                text: "Please fill all input fields",
+                icon: "error",
+              });
         } else {
             this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
             // alert('New Formation Successfully Added');
