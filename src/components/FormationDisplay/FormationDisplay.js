@@ -15,6 +15,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { CardHeader } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditModal from '../EditModal/EditModal';
+import swal from 'sweetalert';
 
 
 const mapReduxStateToProps = (reduxStore) => ({
@@ -87,9 +88,27 @@ class FormationDisplay extends Component {
     
     handleDelete = (id) => {
         console.log('ID to Delete',id);
-        this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id});
-        alert('Formation Successfully Deleted');
-        window.location.reload();
+        // this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id});
+        // alert('Formation Successfully Deleted');
+        // window.location.reload();
+        swal({
+            title: "Are you sure?",
+            text: "This will permanently DELETE the formation?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+            this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id});
+              swal("Formation Deleted",  {
+                icon: "success",
+              });
+            window.location.reload();
+            } else {
+              swal("Process Cancelled");
+            }
+          });
     }
 
     handleOpenEdit = () => {

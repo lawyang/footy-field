@@ -54,10 +54,24 @@ class NewFormationForm extends Component {
               });
         } else {
             this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
-            // alert('New Formation Successfully Added');
-            alert('New Formation Successfully Added');
-            window.location.reload();
+            swal({
+                title: "Success",
+                text: "Your formation has been added",
+                icon: "success",
+              });
+              this.clear();
         }
+    }
+
+    clear = () => {
+        this.setState({
+            newFormation: {
+                formation_name: '',
+                strengths: '',
+                weaknesses: '',
+                notes: ''
+            }
+        })
     }
 
     handleImage = (event) => {

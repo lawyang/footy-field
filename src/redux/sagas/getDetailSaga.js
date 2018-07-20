@@ -6,7 +6,7 @@ function* fetchFormationDetail() {
     try{
         const formationDetail = yield call(axios.get, 'api/footy/formation');
         yield put({type: 'SET_DETAIL', payload: formationDetail.data})
-        console.log("this is formation Details:", formationDetail); 
+        // console.log("this is formation Details:", formationDetail); 
     } catch (error) {
         console.log('Error fetching formation details', error);
     }
