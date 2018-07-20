@@ -35,12 +35,9 @@ router.get('/formation', (req, res) => {
         })
 })
 
-router.get('/update', (req, res) => {
-    console.log('id:', req.param.id);
-    let id = req.body
-    console.log('id2', id);
-    
-    const queryText = `SELECT * formation_detail WHERE id = $1`;
+router.get('/update/:id', (req, res) => {
+    let id = req.params.id
+    const queryText = `SELECT * FROM formation_detail WHERE id = $1`;
         pool.query(queryText, [id])
         .then((result) => {
             console.log('GET call for Formation', result);

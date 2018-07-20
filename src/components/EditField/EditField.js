@@ -26,7 +26,7 @@ class EditField extends Component {
     }
 
     componentDidMount(){        
-        // this.fetchDetailTable();
+        this.fetchDetailTable();
         console.log(this.state.newFormation.id);
         
     }
@@ -54,11 +54,11 @@ class EditField extends Component {
         this.props.dispatch({type: 'ADD_EDIT', payload: this.state.newFormation})   
     }
 
-    // fetchDetailTable = () => {
-    //     const id = this.props.detail;
-    //     console.log(id);
-    //     this.props.dispatch({type: 'FETCH_UPDATE_ID', payload: id});
-    // }
+    fetchDetailTable = () => {
+        console.log(this.state.newFormation.id);
+        console.log('this is the props:', this.props.detail)
+        this.props.dispatch({type: 'FETCH_UPDATE_ID', payload: this.state.newFormation.id});
+    }
 
     render(){
         return(
