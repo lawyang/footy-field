@@ -91,7 +91,14 @@ router.put('/edit', (req, res) => {
     const id = req.body.id;
     console.log('edit', req.body);
     console.log('ID', id);
-    const queryText = ``
+    const queryText = `UPDATE formation_detail SET formation_name = $1, strengths = $2, weaknesses = $3, notes = $4 WHERE id = ${id}`;
+    pool.query(queryText, [edit.formation_name, edit.strengths, edit.weaknesses, edit.notes])
+        .then(() => {
+            res.sendStatus(201)
+        })
+        .catch((error) => {
+            console.log('ERROR updating record', error)
+        })
 })
 
 
