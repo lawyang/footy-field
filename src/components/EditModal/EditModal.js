@@ -59,8 +59,6 @@ class SimpleModal extends React.Component {
     const { classes } = this.props;    
     return (
       <div>
-        <pre>{JSON.stringify(this.props.detail)}</pre>
-
         <IconButton variant="fab" color="secondary" aria-label="Edit" onClick={this.handleOpen}>
             <EditIcon/>
         </IconButton>
@@ -70,9 +68,6 @@ class SimpleModal extends React.Component {
           open={this.state.open}
           onClose={this.handleClose}
         >
-        {/* <IconButton aria-label="Edit">
-            <EditIcon/>
-        </IconButton> */}
           <div style={getModalStyle()} className={classes.paper}>
             <EditField detail={this.props.detail}/>
           </div>

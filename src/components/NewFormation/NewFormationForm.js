@@ -44,18 +44,13 @@ class NewFormationForm extends Component {
     }
 
     handleClick = () => {
-        if(this.state.newFormation.formationName === ''){
+        if(this.state.newFormation.formationName === '' || this.state.newFormation.strengths === '' || this.state.newFormation.weaknesses === ''){
             alert('please fill all fields')
         } else {
             this.props.dispatch( {type: 'ADD_ELEMENT', payload: this.state} )
-            this.setState({
-                newFormation:{
-                    formation_name: '',
-                    strengths: '',
-                    weaknesses: '',
-                    notes: ''
-                }
-            })
+            // alert('New Formation Successfully Added');
+            alert('New Formation Successfully Added');
+            window.location.reload();
         }
     }
 

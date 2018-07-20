@@ -87,7 +87,9 @@ class FormationDisplay extends Component {
     
     handleDelete = (id) => {
         console.log('ID to Delete',id);
-        this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id})
+        this.props.dispatch( {type: 'DELETE_ELEMENT', payload: id});
+        alert('Formation Successfully Deleted');
+        window.location.reload();
     }
 
     handleOpenEdit = () => {
@@ -110,7 +112,6 @@ class FormationDisplay extends Component {
         const { anchorEl } = this.state;
         return(
             <div className="grid-container-display">
-            {/* <pre>{JSON.stringify(this.props.formationDetail)}</pre> */}
                 <div>
                     <Button
                         aria-owns={anchorEl ? 'simple-menu' : null}
@@ -147,7 +148,6 @@ class FormationDisplay extends Component {
                         </CardContent>
                         <CardActions  disableActionSpacing>
                             <EditModal detail={detail.id}/>
-                            <p>{detail.id}</p>
                             <IconButton aria-label="Delete" onClick={() => this.handleDelete(detail.id)}>
                                 <DeleteIcon />
                             </IconButton>

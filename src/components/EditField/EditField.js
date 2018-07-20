@@ -9,7 +9,8 @@ import TextField from '@material-ui/core/TextField';
 
 
 const mapReduxStoreToProps = reduxStore => ({
-    formationDetail: reduxStore.getDetailReducer.getDetailReducer
+    formationDetail: reduxStore.getDetailReducer.getDetailReducer,
+    idDetail: reduxStore.getDetailReducer.getIdDetailReducer
 })
 
 class EditField extends Component {
@@ -18,17 +19,15 @@ class EditField extends Component {
         updateId: '',
         newFormation: {
             id: this.props.detail,
-            formation_name: '',
-            strengths: '',
-            weaknesses: '',
-            notes: ''
+            // formation_name:,
+            // strengths: '',
+            // weaknesses: '',
+            // notes: ''
         }
     }
 
     componentDidMount(){        
-        this.fetchDetailTable();
-        console.log(this.state.newFormation.id);
-        
+        this.fetchDetailTable();        
     }
 
     handleClose = (id) => {  
@@ -52,6 +51,8 @@ class EditField extends Component {
     handleEdit = (id) => {
         console.log(id);     
         this.props.dispatch({type: 'ADD_EDIT', payload: this.state.newFormation})   
+        alert('edits successfully submitted');
+
     }
 
     fetchDetailTable = () => {
@@ -62,26 +63,28 @@ class EditField extends Component {
 
     render(){
         return(
-            <div>
-            <pre>{JSON.stringify(this.props.detail)}</pre>
-            {/* {this.props.formationDetail.map((detail) => 
-            )} */}
+        <div>
+            {/* <pre>{JSON.stringify(this.props.detail)}</pre>
+            <pre>{JSON.stringify(this.props.idDetail)}</pre> */}
             <Typography variant="title" id="modal-title">
               Edit Formation
             </Typography>
-            <br/>
-            <TextField className="addNew" name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
-            <br/>
-            <br/>                       
-            <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>
-            <br/>
-            <TextField className="addNew" name='weaknesses' label="Formation Weaknesses" onChange={this.handleChange('weaknesses')}/>
-            <br/>                        
-            <TextField className="addNew" name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
-            <br/>
-            <br/>
-            <Button variant="contained" color="secondary" onClick={()=>{this.handleEdit(this.props.detail)}}>Submit Edits</Button>
-            </div>
+            {this.props.idDetail.map((detail) => {
+                return <div key={detail.id}>
+                    <br/>
+                    <TextField className="addNew" defaultValue={detail.formation_name} value={this.state.newFormation.formation_name} name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
+                    <br/>
+                    <br/>                       
+                    <TextField className="addNew" defaultValue={detail.strengths} value={this.state.newFormation.strengths} name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>
+                    <br/>
+                    <TextField className="addNew" defaultValue={detail.weaknesses} value={this.state.newFormation.weaknesses} name='weaknesses' label="Formation Weaknesses" onChange={this.handleChange('weaknesses')}/>
+                    <br/>                        
+                    <TextField className="addNew" defaultValue={detail.notes} value={this.state.newFormation.notes} name='notes' label="Notes" multiline={true} rows="9" onChange={this.handleChange('notes')}/>
+                    <br/>
+                    <Button variant="contained" color="secondary" onClick={()=>{this.handleEdit(this.props.detail)}}>Submit Edits</Button>
+                </div>                
+            })}
+        </div>                
         )
     }    
 }

@@ -1,0 +1,18 @@
+.login {
+    /* background-image: url('./green.jpg'); */
+    background-color: black;
+    background-size: cover;
+    height: 100%;
+}
+
+.loginPage {
+    color: white
+}
+
+#login{
+    color: aliceblue;
+}
+
+#registerLink{
+    color: yellow;
+}
