@@ -69,7 +69,7 @@ class EditField extends Component {
             {this.props.idDetail.map((detail) => {
                 return <div key={detail.id}>
                     <br/>
-                    <TextField className="addNew" defaultValue={detail.formation_name} value={this.state.newFormation.formation_name} name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
+                    <TextField className="addNew" defaultValue={this.props.idDetail.formation_name} value={this.state.newFormation.formation_name} name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
                     <br/>
                     <br/>                       
                     <TextField className="addNew" defaultValue={detail.strengths} value={this.state.newFormation.strengths} name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>

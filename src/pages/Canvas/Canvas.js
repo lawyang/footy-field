@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { v4 } from 'uuid';
 import Nav from '../../components/Nav/Nav';
 import { connect } from 'react-redux';
-import Draw from '../../components/Draw/Draw';
+import Canvas from '../../components/Canvas/Canvas';
 
 const mapReduxStateToProps = (reduxStore) => ({
     // formationDetail: reduxStore.getDetailReducer.getDetailReducer
     reduxStore
 })
 
-class Canvas extends Component {
+class NewCanvas extends Component {
 
     
 
@@ -17,10 +17,10 @@ class Canvas extends Component {
         return (
             <div>
                 {JSON.stringify(this.props.reduxStore)}
-                <Draw/>
+                <Canvas/>
             </div>
         );
       }
 }
 
-export default connect(mapReduxStateToProps)(Canvas);
+export default connect(mapReduxStateToProps)(NewCanvas);

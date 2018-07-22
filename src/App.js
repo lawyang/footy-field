@@ -17,6 +17,8 @@ import UserPage from './components/UserPage/UserPage';
 import FormationPage from './pages/Formation/Formation';
 import ResourcePage from './pages/Resource/Resource';
 import AddFormation from './pages/AddFormation/AddFormation';
+import Canvas from './pages/Paper/Paper';
+import NewCanvas from './pages/Canvas/Canvas';
 
 import './styles/main.css';
 
@@ -49,6 +51,10 @@ const App = () => (
         <Route 
           path="/resource"
           component={ResourcePage}
+        />
+        <Route 
+          path="/draw"
+          component={Canvas}
         />
         {/* OTHERWISE (no path!) */}
         <Route render={() => <h1>404</h1>} />

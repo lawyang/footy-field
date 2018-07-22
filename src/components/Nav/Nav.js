@@ -23,26 +23,11 @@ const Nav = () => (
   <div className="navbar">
     <div>
       <ul>
-        <li>
-          <Link to="/user">
-            User Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/addFormation">
-            New Formation
-          </Link>
-        </li>
-        <li>
-          <Link to="/formation">
-            Formations
-          </Link>
-        </li>
-        <li>
-          <Link to="/resource">
-            Resources
-          </Link>
-        </li>
+        <li><Link to="/user">User Home</Link></li>
+        <li><Link to="/addFormation">New Formation</Link></li>
+        <li><Link to="/formation">Formations</Link></li>
+        <li><Link to="/resource">Resources</Link></li>
+        <li><Link to="/draw">draw</Link></li>
       </ul>
     </div> 
 </div>
