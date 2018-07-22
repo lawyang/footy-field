@@ -4,7 +4,8 @@ import Nav from '../../components/Nav/Nav';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import './draw.css';
-import Background from './4-4-2.png';
+import Background from './empty-form.png';
+import Select from '@material-ui/core/Select';
 
 
 const mapReduxStateToProps = (reduxStore) => ({
@@ -91,13 +92,16 @@ class Draw extends Component {
 
       componentDidMount() {
         // Here we set up the properties of the canvas element. 
-        this.canvas.width = 500;
-        this.canvas.height = 637;
+        this.canvas.width = 760;
+        this.canvas.height = 1160;
         this.ctx = this.canvas.getContext('2d');
         this.ctx.lineJoin = 'round';
         this.ctx.lineCap = 'round';
         this.ctx.lineWidth = 3;
         console.log(this.props.reduxStore);
+        this.setState({
+          bgImage: this.props.reduxStore
+        })
       }
 
       handleFetchImage = () => {
@@ -121,7 +125,7 @@ class Draw extends Component {
                   className="canvasDraw"
                 />
                 <pre>{JSON.stringify()}</pre>
-                <Button onClick={this.handleFetchImage}>Clear Canvas</Button>
+                <Button variant="contained" color="primary" onClick={this.handleFetchImage} >Clear Canvas</Button>
             </div>
         );
       }

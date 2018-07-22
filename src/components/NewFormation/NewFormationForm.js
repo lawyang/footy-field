@@ -108,7 +108,6 @@ class NewFormationForm extends Component {
                             </Select>
                         </FormControl>
                         <br/>
-                        {/* <TextField className="addNew" name='image_url' label="Formation Image URL" onChange={this.handleChange('image_url')}/> */}
                         <br/>                       
                         <TextField className="addNew" name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>
                         <br/>
