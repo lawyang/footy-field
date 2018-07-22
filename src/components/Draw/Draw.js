@@ -25,11 +25,8 @@ class Draw extends Component {
       }
 
       isPainting = false;
-      // Different stroke styles to be used for user and guest
       userStrokeStyle = '#000000';
-    //   guestStrokeStyle = '#F0C987';
       line = [];
-      // v4 creates a unique id for each user. We used this since there's no auth to tell users apart
       userId = v4();
       prevPos = { offsetX: 0, offsetY: 0 };
 
@@ -53,6 +50,7 @@ class Draw extends Component {
           this.paint(this.prevPos, offSetData, this.userStrokeStyle);
         }
       }
+
       endPaintEvent() {
         if (this.isPainting) {
           this.isPainting = false;
@@ -72,23 +70,6 @@ class Draw extends Component {
         this.ctx.stroke();
         this.prevPos = { offsetX, offsetY };
       }
-
-    //   async sendPaintData() {
-    //     const body = {
-    //       line: this.line,
-    //       userId: this.userId,
-    //     };
-    //     // We use the native fetch API to make requests to the server
-    //     const req = await fetch('http://localhost:4000/paint', {
-    //       method: 'post',
-    //       body: JSON.stringify(body),
-    //       headers: {
-    //         'content-type': 'application/json',
-    //       },
-    //     });
-    //     const res = await req.json();
-    //     this.line = [];
-    //   }
 
       componentDidMount() {
         // Here we set up the properties of the canvas element. 
@@ -110,8 +91,18 @@ class Draw extends Component {
 
       render() {
         return (
+            <div className="grid-container-display">
             <div>
-                <Nav />
+              <ul>
+                <li><Button variant="contained" color="primary" onClick={this.handleFetchImage} >Clear Canvas</Button></li>
+                {/* <li><Button onClick={this.handleBlue}>blue</Button></li>
+                <li><Button>yellow</Button></li>
+                <li><Button>red</Button></li> */}
+              </ul>
+            
+            
+            </div>
+            <div>
                 <canvas
                 // We use the ref attribute to get direct access to the canvas element. 
                   ref={(ref) => (this.canvas = ref)}
@@ -124,8 +115,10 @@ class Draw extends Component {
                   onMouseMove={this.onMouseMove}
                   className="canvasDraw"
                 />
-                <pre>{JSON.stringify()}</pre>
-                <Button variant="contained" color="primary" onClick={this.handleFetchImage} >Clear Canvas</Button>
+                </div>
+                <div>
+
+                </div>
             </div>
         );
       }

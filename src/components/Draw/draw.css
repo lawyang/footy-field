@@ -1,4 +1,8 @@
-.canvasDraw {
-    /* background-color: aqua; */
-    /* background-image: url("./4-4-2.png"); */
+.grid-container-display {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* padding: 10px; */
+    /* background-color: rgb(255, 255, 255); */
+    margin-top: 10px;
+    grid-gap: 3px
 }
