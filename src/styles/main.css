@@ -1,10 +1,10 @@
 body{
-    /* background-image: url('./soccer.jpg'); */
+    background-image: url('./green-grass.jpg');
     background-size: cover;
+    background-repeat:no-repeat;
 }
 
 form {
-
     width: 30%;
     height: 250px;
     margin: 20px auto;

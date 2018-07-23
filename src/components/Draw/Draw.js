@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { v4 } from 'uuid';
-import Nav from '../../components/Nav/Nav';
+// import Nav from '../../components/Nav/Nav';
 import { connect } from 'react-redux';
 import Button from '@material-ui/core/Button';
 import './draw.css';
 import Background from './empty-form.png';
-import Select from '@material-ui/core/Select';
+// import Select from '@material-ui/core/Select';
 
 
 const mapReduxStateToProps = (reduxStore) => ({

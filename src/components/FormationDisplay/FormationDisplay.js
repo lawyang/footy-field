@@ -16,7 +16,6 @@ import { CardHeader } from '@material-ui/core';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditModal from '../EditModal/EditModal';
 import swal from 'sweetalert';
-import Draw from '../../components/Draw/Draw';
 
 const mapReduxStateToProps = (reduxStore) => ({
     formationDetail: reduxStore.getDetailReducer.getDetailReducer
@@ -186,8 +185,6 @@ class FormationDisplay extends Component {
                                         <img alt="field" src={detail.path} />
                                     </div>
                                 )}
-                                {/* // canvas */}
-                                <Draw/>
                             </div>
                         </CardContent>
                         </Collapse>

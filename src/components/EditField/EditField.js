@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
+import swal from 'sweetalert';
 
 
 const mapReduxStoreToProps = reduxStore => ({
@@ -12,6 +13,7 @@ const mapReduxStoreToProps = reduxStore => ({
 
 class EditField extends Component {
     state = {
+        toPage: false,
         array1: [],
         updateId: '',
         newFormation: {
@@ -48,8 +50,13 @@ class EditField extends Component {
     handleEdit = (id) => {
         console.log(id);     
         this.props.dispatch({type: 'ADD_EDIT', payload: this.state.newFormation})   
-        alert('edits successfully submitted');
-
+        swal({
+            title: "Success",
+            text: "Your formation has been added",
+            icon: "success",
+        }).then((value) => {
+            window.location.reload();
+        });
     }
 
     fetchDetailTable = () => {
@@ -69,7 +76,7 @@ class EditField extends Component {
             {this.props.idDetail.map((detail) => {
                 return <div key={detail.id}>
                     <br/>
-                    <TextField className="addNew" defaultValue={this.props.idDetail.formation_name} value={this.state.newFormation.formation_name} name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
+                    <TextField className="addNew" defaultValue={detail.formation_name} value={this.state.newFormation.formation_name} name="formationName" label="Formation Name" onChange={this.handleChange('formation_name')} />
                     <br/>
                     <br/>                       
                     <TextField className="addNew" defaultValue={detail.strengths} value={this.state.newFormation.strengths} name='strengths' label="Formation Strengths" onChange={this.handleChange('strengths')}/>

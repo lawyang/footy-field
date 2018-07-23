@@ -7,9 +7,9 @@ import EditIcon from '@material-ui/icons/Edit';
 import IconButton from '@material-ui/core/IconButton';
 import EditField from '../EditField/EditField';
 
-const mapReduxStateToProps = (reduxStore) => ({
-    formationDetail: reduxStore.getDetailReducer.getDetailReducer
-})
+// const mapReduxStateToProps = (reduxStore) => ({
+//     formationDetail: reduxStore.getDetailReducer.getDetailReducer
+// })
 
 function rand() {
   return Math.round(Math.random() * 20) - 10;

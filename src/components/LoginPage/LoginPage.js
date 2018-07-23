@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { triggerLogin, formError, clearError } from '../../redux/actions/loginActions';
 import './loginPage.css';
-import Nav from '../../components/Nav/Nav';
+// import Nav from '../../components/Nav/Nav';
+import Typography from '@material-ui/core/Typography';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -66,7 +67,8 @@ class LoginPage extends Component {
       <div className="login">
       {/* <Nav /> */}
         { this.renderAlert() }
-        <form onSubmit={this.login}>
+        <form onSubmit={this.login} className="loginForm">
+        <Typography>
           <h1 id="login" >Login</h1>
           <div className="loginPage">
             <label htmlFor="username">
@@ -98,6 +100,7 @@ class LoginPage extends Component {
             />
             <Link id="registerLink" to="/register">Register</Link>
           </div>
+          </Typography>
         </form>
       </div>
     );

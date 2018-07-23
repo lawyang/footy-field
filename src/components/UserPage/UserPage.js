@@ -6,6 +6,7 @@ import Nav from '../../components/Nav/Nav';
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
 
+import './userPage.css';
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -33,23 +34,19 @@ class UserPage extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div>
+        <div className="userPage">
           <h1
             id="welcome"
           >
-            Welcome, { this.props.user.userName }!
+            { this.props.user.userName }!
           </h1>
-          <button
-            onClick={this.logout}
-          >
-            Log Out
-          </button>
+          <button onClick={this.logout}>Log Out</button>
         </div>
       );
     }
 
     return (
-      <div>
+      <div className="userPage">
         <Nav />
         { content }
       </div>

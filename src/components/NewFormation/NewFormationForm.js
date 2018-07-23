@@ -59,6 +59,7 @@ class NewFormationForm extends Component {
                 text: "Your formation has been added",
                 icon: "success",
               });
+              window.location.reload();
               this.clear();
         }
     }

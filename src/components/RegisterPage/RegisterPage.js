@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import './registerPage.css';
+import swal from 'sweetalert';
+
 
 class RegisterPage extends Component {
   constructor(props) {
@@ -17,9 +20,14 @@ class RegisterPage extends Component {
   registerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username === '' || this.state.password === '') {
-      this.setState({
-        message: 'Choose a username and password!',
+    if (this.state.username === '' || this.state.password === '' || this.state.email === '') {
+      // this.setState({
+      //   message: 'Choose a username and password!',
+      // });
+      swal({
+        title: "Error!",
+        text: "Please fill all input fields",
+        icon: "error",
       });
     } else {
       const body = {
@@ -27,7 +35,6 @@ class RegisterPage extends Component {
         password: this.state.password,
         email: this.state.email
       };
-
       // making the request to the server to post the new user's registration
       axios.post('/api/user/register/', body)
         .then((response) => {
@@ -38,6 +45,11 @@ class RegisterPage extends Component {
               message: 'Ooops! That didn\'t work. The username might already be taken. Try again!',
             });
           }
+          swal({
+            title: "Success",
+            text: "Your Profile Has Been Created",
+            icon: "success",
+          });
         })
         .catch(() => {
           this.setState({
@@ -69,7 +81,7 @@ class RegisterPage extends Component {
 
   render() {
     return (
-      <div>
+      <div className='registerForm' >
         {this.renderAlert()}
         <form onSubmit={this.registerUser}>
           <h1>Register User</h1>
@@ -112,7 +124,7 @@ class RegisterPage extends Component {
               name="submit"
               value="Register"
             />
-            <Link to="/home">Cancel</Link>
+            <Link to="/home" id="cancelLink">Cancel</Link>
           </div>
         </form>
       </div>

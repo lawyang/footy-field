@@ -1,0 +1,10 @@
+.registerForm {
+    /* opacity: 0.5; */
+    background: rgba(43, 43, 46, 0.575);
+    background-size: cover;
+    color: white;
+}
+
+#cancelLink {
+    color: yellow;
+}

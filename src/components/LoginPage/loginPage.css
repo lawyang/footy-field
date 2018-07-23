@@ -1,12 +1,18 @@
 .login {
     /* background-image: url('./green.jpg'); */
-    background-color: black;
+    /* background-color: black; */
+
     background-size: cover;
-    height: 100%;
+    /* height: 100px;
+    width: 100px; */
+    display: grid;
+    grid-template-columns: auto;
+    /* opacity: 0.5; */
 }
 
 .loginPage {
-    color: white
+    color: white;
+
 }
 
 #login{
@@ -15,4 +21,10 @@
 
 #registerLink{
     color: yellow;
+}
+
+.loginForm {
+    /* opacity: 0.5; */
+    background: rgba(43, 43, 46, 0.575);
+    background-size: cover;
 }
