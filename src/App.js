@@ -18,7 +18,7 @@ import FormationPage from './pages/Formation/Formation';
 import ResourcePage from './pages/Resource/Resource';
 import AddFormation from './pages/AddFormation/AddFormation';
 import Canvas from './pages/Paper/Paper';
-import NewCanvas from './pages/Canvas/Canvas';
+
 
 import './styles/main.css';
 
