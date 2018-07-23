@@ -5,6 +5,7 @@ import Nav from '../../components/Nav/Nav';
 
 import { USER_ACTIONS } from '../../redux/actions/userActions';
 import { triggerLogout } from '../../redux/actions/loginActions';
+import Typography from '@material-ui/core/Typography';
 
 import './userPage.css';
 
@@ -34,13 +35,27 @@ class UserPage extends Component {
 
     if (this.props.user.userName) {
       content = (
-        <div className="userPage">
-          <h1
-            id="welcome"
-          >
+        <div className="grid-container-display">
+          {/* <h1 id="welcome">
             { this.props.user.userName }!
-          </h1>
-          <button onClick={this.logout}>Log Out</button>
+          </h1> */}
+          <div><button onClick={this.logout}>Log Out</button></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div>
+            <div class="mb-wrap mb-style-2">  
+              <blockquote>  
+                <p>"There is always someone out there getting better by training harder than you - Pele" </p>
+              </blockquote>
+            </div>
+            {/* <div class="mb-attribution"> 
+              <p class="mb-author">  
+                  - Pele
+              </p>
+            </div> */}
+          </div>
+          <div></div>
         </div>
       );
     }
