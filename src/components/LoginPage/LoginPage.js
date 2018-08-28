@@ -5,6 +5,8 @@ import { triggerLogin, formError, clearError } from '../../redux/actions/loginAc
 import './loginPage.css';
 // import Nav from '../../components/Nav/Nav';
 import Typography from '@material-ui/core/Typography';
+import swal from 'sweetalert';
+
 
 const mapStateToProps = state => ({
   user: state.user,
@@ -37,8 +39,15 @@ class LoginPage extends Component {
 
     if (this.state.username === '' || this.state.password === '') {
       this.props.dispatch(formError());
+
     } else {
       this.props.dispatch(triggerLogin(this.state.username, this.state.password));
+      swal({
+        title: "Login Succesful",
+        text: "",
+        icon: "success",
+    })
+
     }
   }
 

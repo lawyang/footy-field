@@ -56,7 +56,7 @@
   } 
   
   .mb-style-2 blockquote:after {
-      background: none repeat scroll 0 0 rgba(75, 83, 96, 0.8);
+      background: none repeat scroll 0 0 rgba(75, 83, 96, 0.585);
       border-radius: 50% 50% 50% 50%;
       color: rgba(255, 255, 255, 0.5);
       content: "❞";
@@ -85,13 +85,13 @@
   }
   
   .mb-style-2 blockquote p {
-    background : none repeat scroll 0 0 rgba(255, 255, 255, 0.626); 
+    background : none repeat scroll 0 0 rgba(247, 247, 247, 0.674); 
     box-shadow : 0 -6px 0 rgba(82, 80, 80, 0.605); 
     color : rgb(11, 11, 11); 
     display : inline; 
     font-family : Baskerville, Georgia, serif; 
     font-style : italic; 
-    font-size : 28px; 
+    font-size : 35px; 
     line-height : 46px; 
     text-shadow : 0 1px 1px rgba(86, 82, 82, 0.893);  
   } 

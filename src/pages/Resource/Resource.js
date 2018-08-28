@@ -31,7 +31,6 @@ class ResourcePage extends Component {
             content = (
                 <div className="grid-container">
                 <div></div>
-                <div><iframe src="https://giphy.com/embed/l3q2wJsC23ikJg9xe" width="480" height="358" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/thanks-thank-you-kazoo-kid-l3q2wJsC23ikJg9xe"></a></p></div>
                 <div>
                         <ul>
                             <li>
@@ -89,9 +88,9 @@ class ResourcePage extends Component {
                                     CSS3
                                 </h1>
                             </li>
-
                         </ul>
                 </div>
+                <div><iframe src="https://giphy.com/embed/l3q2wJsC23ikJg9xe" width="480" height="358" frameBorder="0" className="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/thanks-thank-you-kazoo-kid-l3q2wJsC23ikJg9xe"></a></p></div>
                 <div></div>
                 </div>
             );
