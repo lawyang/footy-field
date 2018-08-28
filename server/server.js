@@ -28,14 +28,11 @@ app.use('/api/user', userRouter);
 app.use('/api/footy', footyRouter);
 
 // Serve static files
-// app.use(express.static('build'));
+app.use(express.static('build'));
 
-app.use(express.static(__dirname + '/dist/prime-solo-project'));
-
-app.get('/*', function(req,res) {
-    
-res.sendFile(path.join(__dirname+'/dist/prime-solo-project/src/App'));
-});
+app.get('*', (req, res) => {
+  res.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+})
 
 // App Set //
 const PORT = process.env.PORT || 5000;
