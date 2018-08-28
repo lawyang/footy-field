@@ -27,7 +27,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/footy', footyRouter);
 
-app.get('/', function (req, res) { res.send('test'); });
+app.get('/home', function (req, res) { res.send('test'); });
 
 // Serve static files
 app.use(express.static('build'));
