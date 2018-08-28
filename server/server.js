@@ -20,14 +20,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(sessionMiddleware);
 
 // start up passport sessions
-app.use(passport.initialize());
+app.use(passport.initialize()); 
 app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
 app.use('/api/footy', footyRouter);
 
-app.get('/', function (req, res) { res.send('test'); });
+// app.get('/', function (req, res) { res.send('test'); });
 
 // Serve static files
 app.use(express.static('build'));
