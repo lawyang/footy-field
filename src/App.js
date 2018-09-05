@@ -27,7 +27,7 @@ const App = () => (
     {/* <Header/> */}
     <Router>
       <Switch>
-        <Redirect exact from="/" to="/user" />
+        <Redirect exact from="/" to="/home" />
         <Route
           path="/home"
           component={LoginPage}
